@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>雲嶼計畫 · SAA Cloud Quest</title>
+<style>
+:root{--bg:#0b1220;--panel:#131e30;--line:#28364c;--text:#eaf0fa;--muted:#a6b5cb;--mint:#84ebc2;--blue:#8ebeff;--gold:#ffcf80;--red:#ffa5a5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.75 system-ui,-apple-system,"Noto Sans TC",sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:4px}a{color:var(--blue)}button{border:1px solid var(--line);border-radius:12px;padding:10px 18px;background:#1a2940;color:var(--text)}button:hover:not(:disabled){background:#233852;border-color:#7893b3}.primary{background:var(--mint);color:#082a22;border-color:var(--mint);font-weight:750}.primary:hover:not(:disabled){background:#b3f6db;color:#082a22}.small{font-size:.85rem;padding:6px 12px}.ghost{background:transparent}h1,h2,h3,p{margin:0 0 14px}h1{font-size:clamp(2rem,4.4vw,3.8rem);line-height:1.2;letter-spacing:-.04em}h2{font-size:1.6rem;line-height:1.45}h3{font-size:1.12rem}small,.muted{color:var(--muted)}small{font-size:.83rem}.eyebrow{font-size:.76rem;letter-spacing:.15em;font-weight:800;color:var(--mint)}.shell{max-width:1280px;margin:auto;padding:28px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:22px}.brand{font-weight:800;letter-spacing:.04em}.brand span{color:var(--mint)}.offline{font-size:.8rem;color:var(--muted)}nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}nav button[aria-current=page]{background:#244a45;border-color:var(--mint);color:var(--mint)}.layout{display:grid;grid-template-columns:1fr 270px;gap:26px;align-items:start}main{min-width:0}aside{position:sticky;top:24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;margin-bottom:18px}.hero{position:relative;overflow:hidden;padding:38px;background:radial-gradient(ellipse at 100% 0,#244b51 0,transparent 58%),var(--panel)}.hero p{max-width:560px}.hero h1{margin-top:16px}.hero .big-mark{position:absolute;right:26px;bottom:15px;font-size:7rem;opacity:.09;pointer-events:none}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:22px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.chapter{position:relative}.chapter .number{font-size:2rem;color:var(--mint);font-weight:800}.chapter button{width:100%;margin-top:12px}.tag{display:inline-block;font-size:.75rem;border:1px solid var(--line);border-radius:100px;padding:3px 10px;color:var(--muted);margin:0 5px 8px 0}.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}.stat strong{font-size:1.6rem;display:block;line-height:1.3}.stat small{font-size:.75rem}progress{width:100%;height:8px;accent-color:var(--mint);display:block;margin:10px 0 6px}.domain-stat{margin:18px 0}.domain-stat p{display:flex;justify-content:space-between;font-size:.85rem;margin:0}.notice{border-left:3px solid var(--gold);padding:12px 16px;background:#332b20;border-radius:8px;margin-bottom:18px;font-size:.9rem}.notice.error{border-color:var(--red);background:#38252b}.story{color:#c6d6ee;border-left:3px solid var(--blue);padding:2px 0 2px 16px;margin:20px 0}.q-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}.timer{font-variant-numeric:tabular-nums;color:var(--gold)}.question{font-size:1.2rem;font-weight:650;line-height:1.8}.option{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;margin:10px 0;padding:16px;border-radius:13px;border:1px solid var(--line);background:#101b2c;color:var(--text)}.option:has(input:checked){border-color:var(--blue);background:#1d304b}.option input{margin-top:7px;accent-color:var(--mint);width:18px;height:18px;flex:none}.letter{color:var(--muted);font-weight:700}.correct{border-color:#549981!important;background:#143b32!important}.incorrect{border-color:#9c606c!important;background:#3a2431!important}.feedback{margin-top:22px}.feedback h3{color:var(--mint)}.feedback.wrong h3{color:var(--red)}.explanation{padding:12px 14px;border:1px solid var(--line);border-radius:10px;margin:9px 0;font-size:.91rem}.explanation strong{display:block;color:var(--blue)}.recall{width:100%;resize:vertical;min-height:75px;border-radius:10px;background:#0d1727;color:var(--text);border:1px solid var(--line);padding:12px}fieldset{border:0;padding:0;margin:20px 0}legend{margin-bottom:8px}fieldset label.conf{display:inline-flex;gap:6px;margin:4px 12px 4px 0;align-items:center;font-size:.9rem}details{border-top:1px solid var(--line);padding-top:12px;margin-top:16px}summary{cursor:pointer;color:var(--blue)}.flow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:15px 0}.flow span{padding:7px 10px;background:#1a3043;border:1px solid #34516a;border-radius:9px;font-size:.85rem}.flow b{color:var(--mint)}.search{width:100%;padding:12px;background:#0d1727;color:var(--text);border:1px solid var(--line);border-radius:10px;margin-bottom:20px}.score{font-size:3.5rem;color:var(--mint);font-weight:800;line-height:1.2}ul,ol{padding-left:22px}.spaced li{margin:9px 0}.empty{text-align:center;padding:40px 20px}.footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}#toast:empty{display:none}#toast{position:sticky;top:8px;z-index:5}.topic-list{line-height:2;font-size:.9rem}.result-item{margin-top:14px}.result-item summary{font-weight:600}.study-plan{counter-reset:step}.study-plan p{margin:12px 0}.pill{color:var(--gold);font-size:.8rem}body:has(.session) #nav{display:none}@media(max-width:900px){.layout{grid-template-columns:1fr}aside{position:static}.sidebar-extra{display:none}aside .card{padding:20px}.stats{grid-template-columns:repeat(4,1fr)}}@media(max-width:580px){.shell{padding:16px}.top{align-items:flex-start}.offline{max-width:120px;text-align:right}.hero{padding:25px}.grid{grid-template-columns:1fr}.card{padding:20px}.stats{grid-template-columns:1fr 1fr}nav button{font-size:.85rem;padding:8px 11px}.actions button{flex-grow:1}.question{font-size:1.05rem}}@media(prefers-reduced-motion:no-preference){main{animation:appear .3s ease}@keyframes appear{from{opacity:.5;transform:translateY(5px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top"><div class="brand"><span>◈</span> 雲嶼計畫 <small> / CLOUD QUEST</small></div><div class="offline">SAA-C03 學習冒險<br>單檔 · 離線 · 無追蹤</div></header>
+  <nav id="nav" aria-label="主要導覽"></nav>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <section id="startup-help" class="card" role="status" aria-live="polite">
+    <h2>遊戲尚未啟動</h2>
+    <p>如果一直停在這個畫面，目前的開啟方式可能沒有執行 JavaScript，或程式啟動失敗；這不是你的學習進度消失。</p>
+    <p><strong>iPhone／iPad：</strong>「檔案」、通訊軟體或附件的預覽畫面可能只顯示 HTML 外觀，無法執行互動遊戲。若目前是附件預覽，請改用 Safari 開啟已部署的 HTTPS 網站網址；直接點本機 HTML 附件不等於在 Safari 網站中執行。</p>
+    <p>若尚未部署網站，目前最可靠的方式是先在電腦的瀏覽器開啟 HTML。手機網站需要另外部署靜態頁面，不必先建立登入、同步後端，也不必為此立即升級 AWS 付費帳戶。網站可玩與跨裝置進度同步是兩件不同的事。</p>
+    <noscript><p class="notice">目前未執行 JavaScript，遊戲無法在這個檢視器中運作。請改用支援 JavaScript 的瀏覽器開啟網站。</p></noscript>
+  </section>
+  <div class="layout"><main id="main" tabindex="-1"></main><aside id="sidebar" aria-label="學習進度"></aside></div>
+  <footer class="footer">原創教學情境，不是 AWS 官方題庫或考試預測。故事是記憶輔助，實際架構仍需依需求驗證。資料只存於此瀏覽器；清除瀏覽資料、換瀏覽器或移動檔案可能失去進度。</footer>
+</div>
+<script>
+"use strict";
+const VERSION=1, KEY="saa-cloud-quest-v1", DAY=86400000;
+const GUIDE="https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html";
+const domains=[
+ {id:0,name:"守護城門",label:"安全架構",weight:30,color:"#84ebc2",icon:"◇",story:"霧港城的通行證遭到複製。你是新任雲端建築師，要讓正確的人進入，讓祕密留在城內。",topics:"IAM · KMS · VPC · WAF · CloudTrail",flow:["使用者","身分與權限","網路邊界","加密資料"]},
+ {id:1,name:"不墜之城",label:"韌性架構",weight:26,color:"#8ebeff",icon:"△",story:"暴風正在逼近群島。港口、訂單與資料不能隨著一座島停擺。你的任務是讓失敗不再變成災難。",topics:"Multi-AZ · SQS · Auto Scaling · 災難復原",flow:["接收請求","分散故障","緩衝與重試","復原資料"]},
+ {id:2,name:"極速航道",label:"高效能架構",weight:24,color:"#c4b0ff",icon:"↗",story:"星光祭即將開始，全球旅人同時湧入。你得找出真正的瓶頸，而不是把每台機器都換成最大的。",topics:"CloudFront · DynamoDB · EFS · Kinesis",flow:["全球旅人","邊緣與路由","運算擴展","合適的資料層"]},
+ {id:3,name:"金幣議會",label:"成本最佳化",weight:20,color:"#ffcf80",icon:"◎",story:"群島的預算只夠撐到下個月。議會要你省錢，但不能犧牲承諾給居民的可靠性和取用速度。",topics:"S3 生命週期 · Spot · Savings Plans · 資料傳輸",flow:["辨識使用模式","設定硬性限制","比較總成本","衡量再調整"]}
+];
+// Each option carries its own rationale so distractors teach the actual trade-off.
+const bank=[
+{id:"s01",d:0,t:"借來的通行證",tags:"IAM Role EC2 最小權限",q:"霧港的 EC2 工人只需讀取一個 S3 前綴。你要避免在主機存放長期憑證，應怎麼做？",o:[
+["為 EC2 綁定 IAM role，僅允許所需前綴的讀取","角色透過 instance profile 提供可輪替的暫時憑證；以資源與動作限制權限。"],
+["把管理員 access key 寫進 AMI","會散布長期高權限憑證，AMI 的複製也會複製風險。"],
+["將整個 S3 bucket 改為公開","公開存取不是應用程式的身分驗證，且超出需求。"],
+["只給 EC2 安全群組新增 S3 規則","安全群組控制網路，不授予 S3 API 權限。"]],a:[0],note:"先問『誰能做什麼、對哪個資源』，再問封包能不能通。",ref:"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html"},
+{id:"s02",d:0,t:"密庫的第二把鎖",tags:"KMS S3 跨帳戶",q:"盟友帳戶需要讀取以客戶管理 KMS key 加密的 S3 物件。除了網路連線，哪兩項授權都必須成立？（選 2）",o:[
+["S3 物件讀取的跨帳戶授權","需用適當的 bucket policy 與呼叫者 IAM 權限允許 s3:GetObject。"],
+["KMS key 的跨帳戶解密授權","Key policy 必須信任外部帳戶，外部身分也需 IAM 的 kms:Decrypt 權限。"],
+["讓對方知道 bucket 名稱即可","名稱不是授權，知道位置不等於能讀。"],
+["只允許 kms:Encrypt","Encrypt 不能代替讀取時所需的 Decrypt。"],
+["將物件 ACL 設為 public-read 即可略過 KMS","S3 物件授權不能略過 KMS 解密授權。"]],a:[0,1],note:"加密的跨帳戶讀取要過兩道門：S3 與 KMS。",ref:"https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html"},
+{id:"s03",d:0,t:"城內的祕密通道",tags:"VPC S3 Gateway Endpoint",q:"私有子網的 EC2 只需連同 Region 的 S3，不經公網且不想付 NAT 處理費。最適合哪個方案？",o:[
+["S3 gateway endpoint，關聯工作負載的路由表","同 Region 的 S3 流量可走 gateway endpoint，不需 NAT，endpoint 本身無額外費用。"],
+["在 EC2 配公有 IP 並連 internet gateway","會引入公網路徑，也不符合保持私有的設計。"],
+["新建 NAT gateway 處理所有 S3 流量","能連通，但對此需求產生不必要的 NAT 費用。"],
+["只建立 Route 53 私有區域","DNS 命名不會自行建立到 S3 的私有網路路徑。"]],a:[0],note:"S3 支援 gateway 與 interface endpoint；本題的同 Region、VPC 內與成本條件指向 gateway。",ref:"https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html"},
+{id:"s04",d:0,t:"誰偷改了城規",tags:"CloudTrail CloudWatch Config",q:"昨夜有人修改了安全群組。守衛需要知道是哪個身分在何時呼叫了哪個 API，應先查哪裡？",o:[
+["AWS CloudTrail 事件","CloudTrail 記錄帳戶活動與 API 呼叫身分，可用於稽核追查。"],
+["CloudWatch 的 CPUUtilization","CPU 指標用來觀察運算負載，不提供修改者身分。"],
+["只看 AWS Config 的合規結果","Config 可追蹤資源設定與合規，但 API 行為與呼叫者應先查 CloudTrail。"],
+["只看 ALB access log","ALB 記錄應用流量，不是安全群組管理 API 的稽核。"]],a:[0],note:"CloudTrail 找『誰做了什麼』；CloudWatch 看『系統表現如何』；Config 看『資源變成什麼樣』。",ref:"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"},
+{id:"s05",d:0,t:"假扮旅人的注入攻擊",tags:"WAF Shield SQL injection",q:"售票網站遭到帶有 SQL injection 特徵的 HTTP 請求。你需要在進入應用前依請求內容過濾，應用哪個服務？",o:[
+["在 CloudFront 或 ALB 前配置 AWS WAF 規則","WAF 能檢查第 7 層 HTTP 請求，使用 managed rules 等偵測常見網頁攻擊。"],
+["只啟用 Shield Standard","Shield 主要處理 DDoS 防護，不取代針對 SQL injection 的 WAF 規則。"],
+["把資料庫改成 Multi-AZ","提升資料庫可用性，無法過濾惡意 HTTP 內容。"],
+["用安全群組檢查 SQL 字串","安全群組依協定、連接埠與來源判斷，不解析 HTTP 內容。"]],a:[0],note:"網頁內容攻擊想到 WAF；流量耗盡型 DDoS 要考慮 Shield 與整體防護。仍需應用層參數化查詢。",ref:"https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html"},
+{id:"s06",d:0,t:"會自己換密碼的保管箱",tags:"Secrets Manager rotation",q:"旅館應用需讀取 RDS 密碼，並要求託管輪替。以下哪個最合適？",o:[
+["Secrets Manager，加上適當的輪替設定與 IAM 權限","可儲存祕密並對支援的資料庫整合自動輪替；應用也需正確取得更新後的祕密。"],
+["把密碼直接存進 Git","版本歷史會長期保留祕密，也沒有安全的輪替機制。"],
+["只把密碼加密寫在 AMI","雖然可能加密，但仍需自行處理取用與輪替。"],
+["改成公開連線的 RDS 以免用密碼","公開網路存取不會消除資料庫的驗證需求。"]],a:[0],note:"加密儲存不等於自動輪替；看到託管輪替要特別辨識需求。",ref:"https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"},
+{id:"s07",d:0,t:"只讓前門進來",tags:"Security Group ALB RDS",q:"城內有 ALB、應用 EC2 與 RDS 三層。資料庫只應接受應用層的 3306 連線，應如何設定？",o:[
+["RDS 安全群組允許來源為應用層安全群組的 TCP 3306","以安全群組參照表達層間信任，避免追逐會變動的執行個體 IP。"],
+["允許 0.0.0.0/0 的 3306","對所有 IPv4 來源開放，超出需求。"],
+["只允許 ALB 安全群組到 RDS","此架構由應用層呼叫資料庫，不是 ALB 直接查資料庫。"],
+["RDS 允許整個 VPC CIDR 的 TCP 3306","可能連得通，但也允許其他 VPC 內來源，不符合只信任應用層的最小權限要求。"]],a:[0],note:"畫出真正的呼叫路徑：用戶 → ALB → 應用 → DB。安全群組有狀態，回應流量不需對稱開啟。",ref:"https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html"},
+{id:"s08",d:0,t:"議會不能授予的權力",tags:"Organizations SCP explicit deny",q:"議會在 Organizations 的 SCP 明確禁止成員帳戶中的某個一般 IAM role 執行一項動作，但 role 的 IAM policy 允許。結果為何？",o:[
+["動作遭拒；SCP 不授權，且明確拒絕優先","此身分受 SCP 約束，IAM allow 不能蓋過 explicit deny。"],
+["IAM allow 永遠優先於 SCP","違反明確拒絕優先的權限評估原則。"],
+["SCP 會自動為 role 授予管理員權限","SCP 定義權限上限，不直接授權。"],
+["只要改從 CLI 呼叫即可繞過","控制台與 CLI 的 API 都受同一權限評估約束。"]],a:[0],note:"先找 explicit deny；再檢查身分、資源政策及適用邊界。管理帳戶與 service-linked role 等另有規則。",ref:"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"},
+{id:"s09",d:0,t:"不對外公開的藝廊",tags:"CloudFront OAC S3",q:"畫作由 CloudFront 配 S3 REST origin 提供。你想禁止直接透過 S3 URL 讀取，但仍讓 CloudFront 提供內容，應怎麼做？",o:[
+["使用 OAC，限制 bucket policy 只允許指定 distribution，並保持 Block Public Access","OAC 與受限 bucket policy 讓 CloudFront 安全存取非公開 S3 origin。"],
+["使用公開 bucket，再隱藏 S3 URL","隱藏 URL 不是存取控制，使用者仍可能直接存取。"],
+["只在 CloudFront 設定短 TTL","TTL 影響快取，不會限制 S3 的直接存取。"],
+["把 OAC 直接套到 S3 website endpoint","S3 website endpoint 不支援這種 OAC 設定，應使用 S3 REST origin。"]],a:[0],note:"區分 S3 REST origin 與 website endpoint；不是所有 S3 網址都能用 OAC。",ref:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html"},
+{id:"s10",d:0,t:"旅人的身分管理所",tags:"Cognito user pools identity pools",q:"遊戲需要讓外部玩家註冊、登入，並取得應用程式可驗證的使用者 token。最適合什麼？",o:[
+["Amazon Cognito user pool","User pool 提供應用使用者目錄、登入與 token 功能。"],
+["為每位玩家建立 IAM user","IAM 使用者不是面向大量應用消費者的註冊登入系統。"],
+["僅建立 Cognito identity pool 而不配置身分提供者","Identity pool 側重交換 AWS 暫時憑證；不能單獨取代需求中的註冊與登入目錄。"],
+["讓所有玩家共用一把 access key","共用長期金鑰無法區分身分，且容易外洩。"]],a:[0],note:"User pool 處理『你是誰』；identity pool 可協助取得『可用於 AWS 的暫時憑證』。",ref:"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html"},
+{id:"s11",d:0,t:"橋上的雙向關卡",tags:"NACL stateless ephemeral ports",q:"安全群組已允許 HTTPS，但自訂 NACL 只允許入站 443，其他出站全拒絕，客戶端無法完成連線。缺少什麼？",o:[
+["允許適當的出站回應流量至客戶端 ephemeral ports","NACL 無狀態，請求與回應方向皆需明確允許，範圍需依客戶端實際需求規劃。"],
+["再增加一條安全群組入站 443 即可","NACL 的拒絕不會被安全群組的允許覆蓋。"],
+["把 HTTPS 憑證換掉即可","此處的已知根因是回程封包被擋，不是憑證內容。"],
+["NACL 有狀態，回應一定自動通過","有狀態的是安全群組；NACL 無狀態。"]],a:[0],note:"SG 有狀態、NACL 無狀態；排查時逐層看路由、SG、NACL 及回程。",ref:"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"},
+{id:"s12",d:0,t:"一小時的借閱權",tags:"S3 presigned URL",q:"私人 S3 報告需讓未持有 AWS 帳戶的合作夥伴下載，連結最多一小時有效，不要公開 bucket。最適合什麼？",o:[
+["由具適當權限的身分產生一小時的 S3 presigned URL","連結具有期限，可讓持有人執行簽署的動作；若簽署憑證更早失效，連結也會更早失效。"],
+["暫時公開 bucket，再靠人手一小時後關閉","增加公開曝光與操作風險，也不符合需求。"],
+["把 IAM 長期 access key 寄給合作夥伴","暴露長期憑證且權限不侷限於單一下載連結。"],
+["只把檔名改成難猜的字串","不可猜測名稱不是授權與有效期限機制。"]],a:[0],note:"Presigned URL 是 bearer link，取得連結者可使用；要限制期限與分享範圍。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html"},
+{id:"r01",d:1,t:"沉沒一座島",tags:"ALB Auto Scaling Multi AZ",q:"暴風可能使單一 AZ 無法使用。網站應自動補足運算容量並持續接流量，哪個設計最合適？",o:[
+["ALB 與 Auto Scaling group 跨多個 AZ，並配置健康檢查","分散 AZ 故障，ALB 導向健康目標，ASG 補足容量；仍需確保其餘 AZ 有容量與資料層韌性。"],
+["把一台 EC2 換成更大規格","垂直擴大不能消除單一主機與 AZ 的故障風險。"],
+["同一 AZ 建兩台 EC2，手動切換","仍暴露於同一 AZ 故障，且需手動處理。"],
+["只提高 Route 53 的 TTL","較長 TTL 可能延緩 DNS 變更的生效，不會產生備援容量。"]],a:[0],note:"高可用要看故障範圍：多台不一定多 AZ，多 AZ 也不等於跨 Region。",ref:"https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"},
+{id:"r02",d:1,t:"雙子帳本的誤會",tags:"RDS Multi AZ read replica",q:"你使用傳統 RDS Multi-AZ DB instance deployment，只有一個同步 standby。主要目標是 AZ 故障後自動切換。哪個敘述正確？",o:[
+["Standby 用於故障切換，不提供應用讀取擴展","此部署中的單一 standby 不處理讀取；不要與可讀 standby 的 Multi-AZ DB cluster 混淆。"],
+["Standby 一定可當唯讀查詢節點","對傳統 Multi-AZ DB instance deployment 不成立。"],
+["此部署保證整個 Region 故障也不受影響","Multi-AZ 是 Region 內的韌性，不是跨 Region 災難復原。"],
+["非同步 read replica 與同步 standby 完全相同","Read replica 主要用於讀擴展，複寫方式與故障切換語意不同。"]],a:[0],note:"看清 deployment：傳統 Multi-AZ instance 與 Multi-AZ DB cluster 的可讀行為不同。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"},
+{id:"r03",d:1,t:"不怕廚房塞車的訂單",tags:"SQS decoupling buffer",q:"訂餐前台瞬間接到大量訂單，廚房服務處理速度較慢。希望先可靠收單、稍後處理，應怎麼做？",o:[
+["把訂單放入 SQS，消費者成功處理後才刪除訊息","佇列緩衝尖峰並解耦服務；消費者仍需處理重送與冪等。"],
+["讓前台一直同步重試，直到廚房完成","會放大壓力並綁住前台資源，沒有緩衝解耦。"],
+["只縮短 HTTP timeout","可能更快失敗，不會保存待處理訂單。"],
+["用 CloudFront 快取每位客戶的付款 POST 結果","CDN 快取不是可靠的交易工作佇列。"]],a:[0],note:"『先接住、慢慢做』想到 queue；消費成功再刪除，且不要假設絕無重送。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html"},
+{id:"r04",d:1,t:"重複送來的包裹",tags:"SQS visibility timeout idempotency",q:"SQS Standard 的工人偶爾在任務完成前就再次收到同一訊息。哪兩項能改善或安全處理這件事？（選 2）",o:[
+["把 visibility timeout 設為能涵蓋處理時間，必要時延長","訊息處理過久會再次可見；合理 timeout 或 heartbeat 延長可減少並行重送。"],
+["以訂單 ID 等業務鍵實作冪等處理","Standard 可能至少投遞一次，冪等避免重複扣款等副作用。"],
+["開始處理前立即刪除所有訊息","處理失敗後將無法重試，可能遺失工作。"],
+["假設 Standard 提供恰好一次投遞","Standard 可能重送且不保證嚴格順序。"],
+["只把 retention period 調短","會更快到期，不能解決處理中的重複或副作用。"]],a:[0,1],note:"Visibility timeout 不是去重保證；即使降低重送，也要設計冪等。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"},
+{id:"r05",d:1,t:"一則公告，三支隊伍",tags:"SNS SQS fan out",q:"一筆新訂單需讓出貨、記帳與通知三個服務各自可靠處理；任一服務暫停不應阻塞其餘服務。最佳設計？",o:[
+["SNS topic 分送到三個各自獨立的 SQS queue","Fan-out 配獨立 queue 可隔離消費進度、重試與失敗。"],
+["三個服務共同讀同一個 SQS queue","競爭消費通常讓訊息交給其中一個消費者，不保證三個都收到。"],
+["每筆訂單同步逐一呼叫三個服務","容易產生時間與可用性的耦合。"],
+["只使用一個共享記憶體陣列","不具跨服務的可靠持久緩衝。"]],a:[0],note:"『每個人都要一份』是 fan-out；『任一工人做一份』是競爭消費。",ref:"https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html"},
+{id:"r06",d:1,t:"不再卡住的壞包裹",tags:"SQS DLQ maxReceiveCount",q:"一則格式損壞的訊息持續失敗並耗費消費者資源。你要保留它供調查，同時避免無限重試，應怎麼做？",o:[
+["設定 redrive policy，超過 maxReceiveCount 後移到 DLQ","DLQ 隔離多次失敗的訊息以便分析與修復後重送；還需監控與合適保留期。"],
+["將失敗訊息無條件丟棄","會失去調查與補救依據。"],
+["把所有訊息永久鎖定不可見","會阻止正常工作，並非故障隔離。"],
+["只延長 visibility timeout","可延後重試，但不會隔離持續失敗的壞資料，也不會限制總重試次數。"]],a:[0],note:"重試要有邊界；DLQ 不是垃圾桶，要有警報、調查與重送流程。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"},
+{id:"r07",d:1,t:"可以倒退的畫冊",tags:"S3 versioning replication backup",q:"美術師誤覆寫 S3 圖檔後，希望回到先前版本。哪個機制最直接？",o:[
+["事先啟用 S3 Versioning，保留並恢復舊版本","Versioning 可保留物件版本；仍需管理永久刪除、保留成本與備份需求。"],
+["只啟用 CloudFront 快取","快取可能暫有舊內容，但不是可控的版本復原機制。"],
+["只啟用 SSE-KMS","加密保護機密性，不記錄舊內容。"],
+["只啟用 S3 Block Public Access","防止不當公開存取，不會阻止已授權的美術師覆寫，也不保留舊版。"]],a:[0],note:"備援、複寫、版本與備份不是同一件事。防誤刪也要考慮誰能永久刪除版本。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html"},
+{id:"r08",d:1,t:"災後多久能開店",tags:"RPO RTO disaster recovery",q:"議會說『事故後最多遺失 10 分鐘交易，並在 45 分鐘內恢復服務』。這分別是哪兩個指標？",o:[
+["RPO 10 分鐘；RTO 45 分鐘","RPO 是可容忍的資料遺失時間範圍，RTO 是可容忍的復原時間。"],
+["RTO 10 分鐘；RPO 45 分鐘","把資料遺失與服務恢復的指標顛倒。"],
+["兩者都是 RTO","資料遺失的目標不能只用復原時間描述。"],
+["兩者都是服務 uptime 百分比","可用性百分比不直接描述一次事故可遺失多少資料或多久復原。"]],a:[0],note:"RPO 問『資料能退回多久前』；RTO 問『多久能重新營業』。目標仍需演練驗證。",ref:"https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/recovery-objectives.html"},
+{id:"r09",d:1,t:"半開著的備用城",tags:"warm standby pilot light DR",q:"備用 Region 平時已運行一套完整但縮小的可用系統，災難時擴大容量接手。這是哪種復原策略？",o:[
+["Warm standby","完整縮小版環境持續運行，災後擴容接手。"],
+["Backup and restore","平時主要保留備份，事故後重建，通常復原較慢。"],
+["Pilot light","只維持核心元件，其他服務仍需啟動或佈建；不等於完整運作的小系統。"],
+["Active-active","多個 Region 平時同時承接正式業務，不只是待命的小規模環境。"]],a:[0],note:"備份恢復 → pilot light → warm standby → active-active，成本與復原速度通常逐步提高，但不是保證值。",ref:"https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"},
+{id:"r10",d:1,t:"不能綁在同一艘船的登入",tags:"stateless session ElastiCache",q:"網站用 ALB 與多台 EC2，但登入 session 只存在單機記憶體。主機一故障玩家就被登出，該如何改善？",o:[
+["將 session 外移到合適的高可用共享儲存，例如配置妥當的 ElastiCache","應用主機可無狀態替換；共享狀態層本身也需設計故障切換與持久性。"],
+["只啟用 ALB sticky sessions","黏著可維持路由，但該主機故障仍可能失去本機 session。"],
+["永遠不允許 Auto Scaling 縮容","不能防止主機故障，也犧牲彈性。"],
+["把 session 檔案搬到各主機自己的 EBS volume","EBS 可持久化該主機的資料，但這些獨立 volume 不會自動形成共享 session 層。"]],a:[0],note:"可水平替換的應用，狀態應移出單一執行個體；外移後仍要驗證狀態層的韌性。",ref:"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Replication.html"},
+{id:"r11",d:1,t:"別再把客人送進壞港口",tags:"Route 53 failover health checks",q:"主 Region 與備援 Region 都已有網站容量。你要讓 DNS 在主站健康檢查失敗時回傳備站，該用什麼？",o:[
+["Route 53 failover routing，搭配適當健康檢查","提供主備 DNS 回應切換；受 TTL 與快取影響，不保證瞬間切換。"],
+["只用 simple routing 固定主站 IP","無法依主備健康狀態自動選擇備站。"],
+["把主站 DNS TTL 設成一週","可能使客戶端長期快取故障主站的回應。"],
+["只建立備站，不改 DNS 或流量策略","有備站不代表用戶會自動前往。"]],a:[0],note:"DNS 切換不是資料複寫，也不是容量佈建；題目中的備站必須真的能服務。",ref:"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-failover.html"},
+{id:"r12",d:1,t:"有順序的出貨契約",tags:"SQS FIFO message group",q:"出貨系統要求『同一訂單』的事件依序處理，不同訂單可並行。最適合哪個設計？",o:[
+["SQS FIFO，以訂單 ID 作為 MessageGroupId，並做好消費端冪等","同一群組保序，不同群組可並行；不要把佇列去重機制當成端到端副作用恰好一次的保證。"],
+["SQS Standard，完全不處理順序","Standard 不保證嚴格順序，不符合硬性需求。"],
+["所有訂單使用同一 MessageGroupId 以最大化並行","可在單一群組保序，但會限制不同訂單的並行。"],
+["只縮短 visibility timeout","不能為 Standard 增加嚴格順序保證。"]],a:[0],note:"先決定順序的範圍：所有事件，還是每個訂單？過大的保序範圍會限制吞吐。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"},
+{id:"p01",d:2,t:"世界各地的明信片",tags:"CloudFront caching CDN",q:"相同的旅遊照片被全球旅人重複下載。你要降低延遲與 origin 負載，最適合什麼？",o:[
+["CloudFront 快取，設定合適 cache policy 與 TTL","在邊緣快取重複內容，降低往 origin 的請求；命中率與 cache key 設計很重要。"],
+["只把單一 Region 的 EC2 換成更大規格","可能增加容量，但無法消除全球網路距離。"],
+["只啟用 S3 Transfer Acceleration，不設邊緣快取","可改善部分 S3 傳輸路徑，但不提供本題重複內容的 CDN 快取以降低 origin 請求。"],
+["只配置 Global Accelerator 指向應用的 ALB","能改善應用網路路徑，但不會自動快取照片、消除重複的 origin 讀取。"]],a:[0],note:"CDN 解決內容靠近用戶；不代表所有動態、個人化回應都適合共用快取。",ref:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"},
+{id:"p02",d:2,t:"全球即時競速",tags:"Global Accelerator TCP UDP",q:"全球即時競速服務使用 UDP，需要固定 anycast IP，並依健康狀態導向多 Region endpoint。最適合什麼？",o:[
+["AWS Global Accelerator","以固定 anycast IP 與 AWS 全球網路改善到區域 endpoint 的 TCP/UDP 路徑與容錯。"],
+["CloudFront 用來快取 UDP 遊戲封包","CloudFront 不是通用的 UDP 遊戲封包加速與快取服務。"],
+["S3 Transfer Acceleration","針對 S3 物件傳輸，不是任意 UDP 應用 endpoint。"],
+["只增加 DNS TTL","不提供固定 anycast IP 與所需的全球路徑能力。"]],a:[0],note:"看協定與對象：HTTP 內容、TCP/UDP 應用、S3 上傳，對應的加速工具不同。",ref:"https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html"},
+{id:"p03",d:2,t:"大家都能打開的工坊",tags:"EFS EBS shared NFS",q:"多 AZ 的 Linux EC2 要同時讀寫同一個 POSIX 檔案系統，並希望使用託管 NFS。選什麼？",o:[
+["Regional Amazon EFS，配置各 AZ mount target","EFS 提供共享 NFS；Regional 類型支援跨 AZ 儲存與存取。"],
+["單一 EBS gp3 volume 當通用跨 AZ 共享磁碟","EBS volume 位於一個 AZ，gp3 也不提供此種多機跨 AZ 共享檔案系統。"],
+["S3 直接當具完整 POSIX 語意的 NFS","S3 是物件儲存，不等同原生 POSIX NFS。"],
+["每台 EC2 各用 instance store","各自的本機儲存不會自動變成共享檔案系統。"]],a:[0],note:"物件 S3、區塊 EBS、共享檔案 EFS。若是 Windows SMB 與 AD，另看 FSx for Windows File Server。",ref:"https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html"},
+{id:"p04",d:2,t:"讀者太多的圖書館",tags:"RDS read replica read scaling",q:"RDS MySQL 的瓶頸是大量可接受短暫複寫延遲的唯讀報表。想分攤讀流量，最直接的方法？",o:[
+["建立 read replicas，讓報表明確連到讀取 endpoint","唯讀副本能分攤讀取，但應考慮非同步複寫延遲與路由。"],
+["傳統 Multi-AZ DB instance 的 standby 自動承接報表","該類型 standby 不處理應用唯讀查詢。"],
+["增加備份保留天數","備份留存不會增加查詢吞吐。"],
+["讓所有報表無限重試 primary","會繼續加重同一瓶頸。"]],a:[0],note:"讀擴展與故障切換是不同需求；讀副本也不會自動修復低效率的 SQL。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"},
+{id:"p05",d:2,t:"消失的排行榜延遲",tags:"ElastiCache caching invalidation",q:"熱門排行榜反覆執行相同昂貴查詢，可容忍結果落後 30 秒。你要減少資料庫查詢，應怎麼做？",o:[
+["使用 ElastiCache 快取結果並設定 TTL 與失效策略","適合重複讀取且可接受一定陳舊度；cache miss 仍需查資料庫。"],
+["每個讀取都新增一筆索引","索引不是每次讀取新增的紀錄，且無法替代整體快取策略。"],
+["只提高資料庫備份頻率","備份不會快取查詢結果。"],
+["把快取設為永久有效，不管排行榜變更","會造成超過可接受範圍的陳舊資料。"]],a:[0],note:"快取一定要問：可陳舊多久？如何失效？未命中與故障時會發生什麼？",ref:"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/WhatIs.html"},
+{id:"p06",d:2,t:"被擠爆的一個櫃檯",tags:"DynamoDB partition key hot partition",q:"DynamoDB 以固定值『TODAY』作為大量事件的 partition key，形成熱分割區。哪個改善最符合根因？",o:[
+["依存取模式改用能分散流量的高基數 partition key，必要時 write sharding","良好鍵設計可分散熱點；需要同時規劃查詢與聚合方式。"],
+["只增加每筆 item 的大小","增加單筆讀寫消耗，不會分散 partition key。"],
+["認為 on-demand 一定消除所有鍵熱點","On-demand 免除部分容量管理，但不保證消除不良鍵設計造成的熱點。"],
+["把所有請求改用同一個 sort key","不會分散 partition key 的集中流量。"]],a:[0],note:"『免管理容量』不等於『免設計資料模型』。先看存取模式與 key 分布。",ref:"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"},
+{id:"p07",d:2,t:"可重播的天氣河流",tags:"Kinesis streams replay consumers",q:"感測器事件持續流入，多個獨立分析程式需要讀取同一串事件，並在保留期內重新播放。最適合什麼？",o:[
+["Kinesis Data Streams，配置合適保留期與消費方式","提供串流記錄、獨立消費位置與保留期內重讀；順序以 shard 等範圍為界。"],
+["一個 SQS Standard queue，收到後立即刪除","競爭消費與刪除語意不符合多消費者重播同一串流的需求。"],
+["只有 SNS 推送，不設定任何持久保存目的地","單靠推送不提供本題所需的保留期重播。"],
+["用 CloudWatch CPU metric 存完整事件","指標不是供多個消費者讀取完整事件的串流。"]],a:[0],note:"Queue 偏工作分派；stream 偏保留事件與消費位置。不要只看到『非同步』就選 SQS。",ref:"https://docs.aws.amazon.com/streams/latest/dev/introduction.html"},
+{id:"p08",d:2,t:"十五分鐘之外的任務",tags:"Lambda ECS Fargate timeout",q:"一個容器化轉檔工作每次持續約 40 分鐘，無法拆分。想免管主機又完成整個工作，應選什麼？",o:[
+["使用 ECS on Fargate 執行容器工作","Fargate 提供不需自行管理 EC2 主機的容器運算，適合此長時間工作。"],
+["使用單次 Lambda invocation 執行 40 分鐘","Lambda 單次 invocation 最長 15 分鐘，不能完成本題不可拆分的工作。"],
+["只增加 Lambda 記憶體，timeout 就無上限","記憶體可能影響效能，但不移除最長執行時間限制。"],
+["用 API Gateway 延長函式可執行時間","前端整合設定不會移除 Lambda 自身上限。"]],a:[0],note:"先檢查硬限制，再比較管理成本；『serverless』不只 Lambda。",ref:"https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html"},
+{id:"p09",d:2,t:"大包裹的分段航線",tags:"S3 multipart Transfer Acceleration",q:"遠端港口要經網際網路反覆上傳大型檔案到同一 S3 bucket。哪兩個方法值得測試以改善長距離上傳？（選 2）",o:[
+["S3 multipart upload，並行上傳分段","可並行、針對失敗分段重試；需完成或清理未完成 multipart uploads。"],
+["S3 Transfer Acceleration，先比較實測效益與費用","利用邊緣網路改善部分長距離路徑，但不保證所有路徑都更快。"],
+["只提高 S3 物件的下載快取 TTL","下載快取不直接加速上傳到 S3。"],
+["把所有上傳包進一個巨大的不可重試請求","失敗時代價更高，也不能享受分段並行。"],
+["改用 EBS snapshot 作為瀏覽器上傳 endpoint","EBS snapshot 不是這種 S3 物件上傳的替代 endpoint。"]],a:[0,1],note:"分段並行與路徑加速是不同層次；加速要測量，不是看到距離遠就假設必然划算。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html"},
+{id:"p10",d:2,t:"Windows 公會的檔案櫃",tags:"FSx Windows SMB Active Directory",q:"公會要把 Windows 共享檔案搬到 AWS，保留 SMB、Windows ACL 與 Active Directory 整合。最合適什麼？",o:[
+["Amazon FSx for Windows File Server","提供託管 Windows 檔案服務，支援 SMB 與 AD 整合。"],
+["EFS 原生提供 Windows SMB 與 Windows ACL","EFS 提供 NFS，非本題要求的原生 Windows SMB 檔案服務。"],
+["把 S3 URL 當作完整 SMB share","S3 原生物件 API 不等同完整 SMB 檔案共享。"],
+["Amazon FSx for Lustre","Lustre 著重高效能運算的平行檔案系統，不是需求中的 Windows SMB 與 AD 檔案伺服器。"]],a:[0],note:"先辨識檔案協定與相容性：Linux NFS、Windows SMB、HPC Lustre 各有合適服務。",ref:"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html"},
+{id:"p11",d:2,t:"不想自己串接的事件",tags:"EventBridge event filtering routing",q:"不同 AWS 服務與應用會發佈業務事件；你要依事件內容規則路由到不同目標，避免自建中央輪詢程式。最適合什麼？",o:[
+["Amazon EventBridge event bus 與 rules","適合事件驅動整合及依內容比對路由；仍需設定重試與失敗處理。"],
+["只用一個 ALB target group","ALB 分配 HTTP 等連線請求，不是通用的業務事件匯流排。"],
+["每分鐘掃描所有應用的記憶體","難以可靠跨服務讀取，也違反免自建輪詢的需求。"],
+["只開啟 VPC Flow Logs","Flow Logs 記錄網路流量資訊，不是業務事件路由器。"]],a:[0],note:"EventBridge 側重事件比對與整合；SQS 側重可靠緩衝；SNS 側重 pub/sub。",ref:"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html"},
+{id:"p12",d:2,t:"會自己長大的工人隊",tags:"Auto Scaling target tracking queue backlog",q:"每個圖片工作耗時相近。SQS 待辦量持續上升，但工人的 CPU 不高；想依實際積壓擴展 EC2 工人，應採用什麼訊號？",o:[
+["以每台工人的 backlog 作為自訂 target tracking 指標","將待辦量除以有效工人數，目標可依容許等待時間與處理時間推估，並驗證量測方式。"],
+["只看 ALB 的 HTTP request count","背景工人從 SQS 取工作，ALB 請求不是直接的工作積壓訊號。"],
+["把 CPU 門檻永遠設為 100%","CPU 不高時可能永不擴容，無法反映此瓶頸。"],
+["只提高 SQS 訊息保留天數","能延後到期，但不提高處理能力。"]],a:[0],note:"好的擴展指標要與每單位容量的需求相關，而不只是容易取得的數字。",ref:"https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html"},
+{id:"c01",d:3,t:"睡著的歷史卷軸",tags:"S3 Glacier Deep Archive lifecycle",q:"七年稽核資料幾乎不讀，能接受取回等待約 48 小時。考慮最低儲存成本，最值得評估什麼？",o:[
+["S3 Glacier Deep Archive，搭配生命週期與合適取回方式","適合長期低頻封存；需納入最短儲存期、取回費、物件大小與取回時間。"],
+["全部維持 S3 Standard","即時存取很方便，但對幾乎不讀的長期封存可能不划算。"],
+["把資料放 EC2 的 RAM","RAM 不持久，也不適合七年封存。"],
+["刪掉資料，需要時再請客戶提供","違反七年保留需求。"]],a:[0],note:"先確認可等待多久、保存多久、取回量多少；最低每 GB 價格不必然最低總成本。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"},
+{id:"c02",d:3,t:"不能預測的相簿",tags:"S3 Intelligent Tiering access pattern",q:"大型相片物件會保留多年，哪些會熱門無法預測；你希望自動調整存取層級，減少手動管理。最適合什麼？",o:[
+["S3 Intelligent-Tiering，評估監控費與各層行為","可依存取模式自動分層，適合未知或變動模式；仍需看物件大小與可選封存層設定。"],
+["每天由人手猜測所有檔案熱度","管理成本高，也不符合自動化需求。"],
+["立即把全部物件放入需長時間取回的封存層","可能違反熱門照片即時存取需求。"],
+["全部永久放在最貴的熱層才算最佳化","忽略長期冷資料的節省空間。"]],a:[0],note:"已知模式可用 lifecycle；未知且會變的模式可考慮 Intelligent-Tiering，仍要計算費用。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering-overview.html"},
+{id:"c03",d:3,t:"可被打斷的煉金工坊",tags:"EC2 Spot checkpoint interruption",q:"夜間大量批次模擬可重試、可 checkpoint，也能承受中斷。要降低 EC2 成本，最適合什麼？",o:[
+["使用多種執行個體類型與 AZ 的 Spot 容量，處理中斷","適合可中斷工作；容量可能回收，需 checkpoint、重試與容量分散。"],
+["把唯一的不可中斷交易 primary 放 Spot 且不做備援","節省成本不應違反工作負載的不中斷與可靠性限制。"],
+["只使用 Dedicated Hosts 而不考慮需求","專屬主機有特定授權等用途，不是此類批次工作的通用最低成本選擇。"],
+["假設 Spot 容量隨時保證可用","Spot 容量受供需影響，不能假設一定取得或不會中斷。"]],a:[0],note:"『可以中斷』是 Spot 的關鍵；先確認容錯與截止時間，再追求折扣。",ref:"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"},
+{id:"c04",d:3,t:"穩定的每小時支出",tags:"Compute Savings Plans commitment",q:"你已有一段時間穩定的運算基線，希望在 EC2 類型、Region、Fargate 與 Lambda 間保持彈性，並願意承諾每小時用量金額。選什麼？",o:[
+["Compute Savings Plans，依穩定基線決定承諾","以每小時支出承諾換折扣，具有跨指定運算服務的彈性；未用完的承諾也需付費。"],
+["Spot 並假設永不中斷","Spot 不是以穩定每小時支出承諾取得上述彈性的方案。"],
+["EC2 Instance Savings Plans，鎖定特定 Region 的 instance family","有折扣但彈性範圍較窄，不符合跨 Region、Fargate 與 Lambda 的完整需求。"],
+["Standard EC2 Reserved Instances，作為所有服務的通用折扣","EC2 RI 不是對 Fargate 與 Lambda 都適用的運算支出承諾方案。"]],a:[0],note:"Savings Plans 是支出承諾，不是容量預留；不要把折扣與容量保證混為一談。",ref:"https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html"},
+{id:"c05",d:3,t:"只在白天開門的學院",tags:"EC2 scheduling rightsizing",q:"開發用 EC2 只在週一至週五白天有人使用，晚上與週末可關閉。最先做的成本改善？",o:[
+["排程停止與啟動，並檢查 EBS 與其他持續費用","消除不用時的 instance 運算費，但停止不會自動消除 EBS 等成本。"],
+["立刻為全天最高用量購買長期承諾","應先消除閒置，再以剩餘穩定需求評估承諾。"],
+["只把所有 EBS volumes 改成較低成本類型","可能降低部分儲存費，但不能消除每晚與週末閒置的 EC2 運算費，還要先確認效能需求。"],
+["停止 EC2 就宣稱整個環境零費用","磁碟與其他資源仍可能計費。"]],a:[0],note:"常見順序：刪除不用 → 排程 → rightsize → 再為穩定基線評估承諾。",ref:"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html"},
+{id:"c06",d:3,t:"被過路費吃掉的預算",tags:"NAT gateway S3 data transfer",q:"同 Region 私有子網每天經 NAT gateway 讀寫大量 S3。其他外連需求仍存在。如何針對 S3 降低 NAT 費用？",o:[
+["新增並正確關聯 S3 gateway endpoint，保留其他流量所需的 NAT","S3 流量可走 endpoint，不需經 NAT；不能因此不經檢查就刪掉所有 NAT。"],
+["刪除 NAT 且不新增任何路徑","會中斷仍需外連的工作負載，也可能中斷 S3 存取。"],
+["把 S3 bucket 改公開就不會有 NAT 費","公開權限不會自動改變私有子網的路由與 NAT 計費。"],
+["只新增 S3 interface endpoint，假設它和 gateway endpoint 同樣沒有額外費用","Interface endpoint 另有計費；本題的同 Region、VPC 內 S3 需求應先評估無額外費用的 gateway endpoint。"]],a:[0],note:"先畫資料流再省錢：請求經過哪些計費元件？變更後是否仍滿足其餘連線需求？",ref:"https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html"},
+{id:"c07",d:3,t:"消失的磁碟尾巴",tags:"EBS unattached Cost Explorer",q:"團隊刪除測試主機後，帳單仍有大量 EBS 費用。最適當的下一步是什麼？",o:[
+["盤點未附加 volumes 與 snapshots，確認保留需求後清理","刪除 instance 不代表所有資料資源都刪除；先確認用途與備份政策，避免誤刪。"],
+["不查用途就刪除所有 snapshots","可能破壞復原與稽核需求。"],
+["購買更多 EC2 讓磁碟都有附加對象","增加運算成本，不處理閒置儲存的根因。"],
+["假設未附加的 EBS 不計費","EBS 配置容量等仍可能持續收費。"]],a:[0],note:"成本最佳化不是無差別刪資料：找出閒置、驗證擁有者、依保留政策處理。",ref:"https://docs.aws.amazon.com/ebs/latest/userguide/ebs-deleting-volume.html"},
+{id:"c08",d:3,t:"突然出現的活動網站",tags:"Lambda API Gateway pay per use",q:"小型 API 每天只有少量、難預測且短時間的請求，大部分時間沒有流量，也無特殊長時間運算需求。最值得先評估的低維運方案？",o:[
+["API Gateway 與 Lambda，評估實際請求和執行費","按使用量計費可避免長期閒置的主機容量，但仍須考慮延遲、限制及其他費用。"],
+["固定開啟大型 EC2 叢集全年待命","與低頻閒置模式不匹配。"],
+["先購買最高尖峰的三年運算承諾","尖峰不是穩定基線，容易過度承諾。"],
+["認定 serverless 對所有流量永遠最便宜","高持續負載、長運算與其他限制可能讓不同方案更划算。"]],a:[0],note:"看使用曲線，不背『serverless 永遠便宜』；把請求、時間、網路與維運一起算。",ref:"https://aws.amazon.com/lambda/pricing/"},
+{id:"c09",d:3,t:"帳單守望台",tags:"AWS Budgets Cost Explorer",q:"議會想知道花費主要來自哪裡，並在預估月費超過目標時收到通知。哪兩項組合最直接？（選 2）",o:[
+["Cost Explorer 分析歷史費用與使用趨勢","可依服務、帳戶、標籤等維度分析費用，需適當資料與標籤設定。"],
+["AWS Budgets 設定預算與預估費用通知","可在實際或預估費用超過門檻時發通知；不是即時硬性消費上限。"],
+["CloudTrail 自動拒絕超出月預算的每個 API","CloudTrail 是稽核，不會自動執行此預算阻擋。"],
+["把所有資源改成同名即可自動歸戶","名稱本身不會取代成本分配標籤等管理方式。"],
+["只看 EC2 CPU 指標就能解釋整個帳單","CPU 不涵蓋所有服務的儲存、請求與網路費用。"]],a:[0,1],note:"Budgets 通知不等於硬上限；資料可能有延遲，不要把預算警報當成絕對阻止超支的保證。",ref:"https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html"},
+{id:"c10",d:3,t:"不用蓋資料倉庫的小調查",tags:"Athena S3 SQL Parquet",q:"分析師每週偶爾查 S3 上的日誌，想直接用 SQL，避免長期維護資料庫。哪個方案及優化最合理？",o:[
+["Athena，搭配分割區與適合的壓縮欄式格式","Athena 可查詢 S3；適當 partition pruning、Parquet 等可減少掃描量與費用。"],
+["每次把全體日誌搬進一台全年運作的大型資料庫","對此低頻直接查 S3 的需求，增加長期維運與容量成本。"],
+["把所有檔案無條件合成不可裁剪的單檔","可能增加每次掃描量，不利於依日期縮小資料範圍。"],
+["先建立持續運行的 Redshift provisioned cluster，不評估掃描量與使用率","Redshift 適合部分分析需求，但此低頻、免長期維護的情境應先評估 Athena，而非預先保有固定叢集。"]],a:[0],note:"分析成本不只看儲存，還要看每次掃描量。欄式格式與合理分割區能避免讀取不需要的資料。",ref:"https://docs.aws.amazon.com/athena/latest/ug/performance-tuning.html"},
+{id:"c11",d:3,t:"搬遷時仍要開門的商店",tags:"DMS CDC database migration",q:"商店把支援的資料庫遷到 AWS，要求減少停機，希望先搬既有資料，再持續同步變更直到切換。哪個方案最直接減少自建工作？",o:[
+["AWS DMS full load 加 CDC，驗證相容性與切換流程","可先載入再擷取變更；仍需來源設定、延遲監控、資料驗證與切換計畫。"],
+["只複製一次資料後立刻忽略所有新交易","切換時會遺失或落後於持續變更的資料。"],
+["只用 Route 53 搬移資料表內容","DNS 改變連線位置，不複寫資料。"],
+["假設 DMS 必定自動轉換所有 schema 與程式碼","異質遷移可能另需 schema conversion 與應用修改，不可假設全自動。"]],a:[0],note:"降低遷移維運仍需滿足資料正確性；DMS 搬資料，schema 與應用相容性要另行確認。",ref:"https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html"},
+{id:"c12",d:3,t:"別把冷資料放在單一小島",tags:"S3 One Zone IA resilience cost",q:"唯一一份重要資料需要承受 AZ 故障、毫秒級存取，且每月讀取不多。為省錢應如何評估？",o:[
+["考慮 S3 Standard-IA，納入取回與最短儲存期費用","多 AZ 儲存且即時存取，適合符合條件的不頻繁讀取資料，但要比較總費用。"],
+["只因單價低就用 S3 One Zone-IA 存唯一副本","單 AZ 類型不符合本題承受 AZ 故障的限制。"],
+["選需要數小時取回的封存層","不符合毫秒級存取要求。"],
+["直接刪除一半物件降低成本","不滿足重要資料完整保留的需求。"]],a:[0],note:"先滿足耐久性、可用性與取回時間，再選最低總成本。便宜但不合需求不是最佳化。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"}
+];
+const retakeBank=[
+{id:"d01",pool:"diagnostic",d:0,skill:"service",t:"Borrowed credentials",tags:"IAM STS cross-account",q:"A reporting application runs on EC2 in account A. It must read objects from a private S3 bucket in account B. The security team prohibits distributing long-term credentials. Which design provides temporary cross-account access with the least credential management?",o:[
+["Use the EC2 role to assume a role in account B. Configure the target role's trust policy and grant only the required S3 permissions.","EC2 取得暫時憑證，再透過 STS AssumeRole 跨帳戶；來源要能 AssumeRole，目標 trust policy 也要信任來源。"],
+["Create an IAM user in account B and periodically copy its access keys to every EC2 instance.","仍須散布與管理長期 access keys，不符合禁止長期憑證的條件。"],
+["Add the account B bucket ARN to the EC2 security group's outbound rules.","安全群組不是 IAM 授權機制，不能透過 bucket ARN 授予物件權限。"],
+["Attach an SCP to account A that grants s3:GetObject in account B.","SCP 不授予權限；它限制受約束身分的權限上限。"]],a:[0],note:"關鍵限制是 temporary credentials，不是只要『能連到 S3』。最接近的 IAM user 方案仍違反憑證要求。",ref:"https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html"},
+{id:"d02",pool:"diagnostic",d:0,skill:"tradeoff",t:"A private download",tags:"CloudFront OAC signed URL",q:"A media company uses CloudFront with a private S3 REST origin. Only paying users should download a video for 15 minutes, and users must not bypass CloudFront to access S3. Which TWO actions meet these requirements? (Choose TWO.)",o:[
+["Configure origin access control and a bucket policy restricted to the CloudFront distribution.","OAC 與 bucket policy 限制 origin 存取，防止直接透過 S3 取得內容。"],
+["Issue CloudFront signed URLs with a 15-minute expiration after verifying the user's entitlement.","Signed URL 限制 viewer 取用期限；授權服務仍需先驗證付費身分。"],
+["Use only an S3 presigned URL with a 15-minute expiration.","可提供限時 S3 存取，但讓用戶繞過 CloudFront，不符合這題的硬性限制。"],
+["Make the bucket public and configure a 15-minute CloudFront TTL.","TTL 不是使用者授權期限，公開 bucket 也可繞過 CDN。"],
+["Enable S3 Versioning and disable CloudFront caching.","Versioning 管理物件版本，不驗證付費使用者或阻止直接下載。"]],a:[0,1],note:"分開看 viewer 與 origin 的兩道門：signed URL 管用戶，OAC 管 CloudFront 到 S3。",ref:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html"},
+{id:"d03",pool:"diagnostic",d:0,skill:"service",t:"Evidence, not metrics",tags:"CloudTrail Config CloudWatch",q:"An auditor asks which principal disabled encryption on a resource and which API request performed the change. The operations team also has CloudWatch metrics and AWS Config history. Which source should the architect inspect first?",o:[
+["CloudTrail management events for the resource and time window.","CloudTrail 管理事件提供 API 動作、呼叫身分與時間。"],
+["CloudWatch CPU and network utilization metrics.","利用率不能回答誰呼叫了設定變更 API。"],
+["Only the resource's latest AWS Config compliance result.","Config 可追設定歷史與合規；本題要先取得 API 與 principal 的證據。"],
+["VPC Flow Logs for traffic to the resource.","網路流量紀錄不等同管理 API 與身分稽核紀錄。"]],a:[0],note:"不是看到『監控』就一律 CloudWatch；題目問的是 principal 與 API。",ref:"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"},
+{id:"d04",pool:"diagnostic",d:0,skill:"tradeoff",t:"Return traffic",tags:"NACL Security Group stateless",q:"A web server accepts HTTPS from the internet. Its security group allows inbound TCP 443. A custom network ACL allows inbound 443 but denies all outbound traffic. Connections fail. Which change addresses the described cause without opening all outbound traffic?",o:[
+["Allow outbound TCP responses to the client ephemeral port range in the network ACL.","NACL 無狀態，需要明確允許回程流量，依實際客戶端規劃 ephemeral port 範圍。"],
+["Add the same inbound TCP 443 rule to the security group again.","重複 SG 規則不會覆蓋 NACL 的 outbound deny。"],
+["Allow outbound TCP 443 only in the network ACL.","回應的目的地是客戶端的 ephemeral port，不是伺服器的 443。"],
+["Replace the server's TLS certificate.","已知原因是封包回程遭阻擋，不是憑證內容。"]],a:[0],note:"先畫方向與來源／目的 port，再判斷 SG 與 NACL。『HTTPS』不代表每個方向的目的 port 都是 443。",ref:"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"},
+{id:"d05",pool:"diagnostic",d:1,skill:"tradeoff",t:"Two kinds of replicas",tags:"RDS Multi AZ read replica",q:"An application uses an RDS PostgreSQL Multi-AZ DB instance deployment with one standby. Read-only analytics can tolerate replication lag but overload the primary. Availability during an AZ failure must be retained. Which change best addresses the read bottleneck?",o:[
+["Keep Multi-AZ and add read replicas. Route analytics to their endpoints.","保留同步 standby 的故障切換用途，另外以 read replicas 分攤可接受延遲的讀取。"],
+["Send analytics to the existing standby of the Multi-AZ DB instance deployment.","傳統單 standby 的 DB instance deployment 不提供 standby 查詢；不要與 Multi-AZ DB cluster 混淆。"],
+["Replace Multi-AZ with a single larger primary and remove all replicas.","可能增加容量，但移除題目要保留的跨 AZ 可用性。"],
+["Increase backup retention to reduce query latency.","保留更多備份不會分攤線上讀取。"]],a:[0],note:"同時滿足『保留可用性』與『讀擴展』，不能只解其中一項。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"},
+{id:"d06",pool:"diagnostic",d:1,skill:"multi",t:"One order, three subscribers",tags:"SNS SQS fan out",q:"Every order must be processed independently by billing and fulfillment. Either consumer may be unavailable for an hour. Each must later receive its own copy without blocking the other. Which TWO components should be combined? (Choose TWO.)",o:[
+["Publish each order to an SNS topic.","SNS 將同一事件 fan-out 給不同訂閱者。"],
+["Subscribe one separate SQS queue for each consumer and configure the required queue permissions.","各 queue 保留各自待辦，隔離消費進度與失敗。"],
+["Put both consumers on one shared SQS queue.","競爭消費不是每個服務取得一份；其中一方成功刪除後另一方不會收到相同工作。"],
+["Use direct synchronous calls from the order API to both services only.","任一服務停機都會影響同步流程，不提供各自持久緩衝。"],
+["Use an ALB to distribute each order to one of the consumers.","分派到其中一個目標，不能滿足兩個消費者各收一份。"]],a:[0,1],note:"兩個需求各自找對應：每人一份＝fan-out；暫停後能補處理＝獨立持久 queue。",ref:"https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html"},
+{id:"d07",pool:"diagnostic",d:1,skill:"service",t:"A smaller working city",tags:"DR warm standby RTO",q:"A company requires regional disaster recovery. A complete but reduced-capacity application is already running in a second Region. During recovery, the team scales this environment and redirects users. Which strategy describes this design?",o:[
+["Warm standby.","完整但縮小的可運作系統持續待命，災時擴容。"],
+["Pilot light.","只維持核心元件，通常還需啟動其餘應用層，不是完整可用的小型系統。"],
+["Backup and restore.","事故後從備份還原重建，不是事先持續運行完整縮小版。"],
+["Multi-site active-active.","平時多站都承接業務流量，不只是備站小規模待命。"]],a:[0],note:"辨識『哪些元件現在就在運作』，不要只憑跨 Region 就選 active-active。",ref:"https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"},
+{id:"d08",pool:"diagnostic",d:2,skill:"tradeoff",t:"The protocol matters",tags:"Global Accelerator CloudFront UDP",q:"A game uses UDP endpoints in two Regions. Players need static anycast IP addresses and health-based routing over the AWS global network. No HTTP content caching is required. Which service is the best fit?",o:[
+["AWS Global Accelerator.","提供固定 anycast IP、TCP/UDP 端點流量路由與健康檢查。"],
+["Amazon CloudFront with a long cache TTL.","CDN 不提供任意 UDP 遊戲協定的快取與路由。"],
+["S3 Transfer Acceleration.","針對 S3 物件傳輸，不是遊戲 UDP endpoint。"],
+["Route 53 weighted records alone.","DNS 加權不是固定 anycast IP 與題目指定的網路路徑機制。"]],a:[0],note:"先看協定、固定 IP 與是否要快取，再比較全球加速服務。",ref:"https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html"},
+{id:"d09",pool:"diagnostic",d:2,skill:"service",t:"Shared workshop",tags:"EFS EBS FSx NFS",q:"Linux instances in an Auto Scaling group span three AZs. They must concurrently update a shared file system using NFS. The company wants managed storage and AZ resilience. Which choice best fits?",o:[
+["Regional Amazon EFS with mount targets in the participating AZs.","Regional EFS 提供多 AZ 的託管共享 NFS，適合可替換的 Linux 工人。"],
+["A single gp3 EBS volume attached across all three AZs.","EBS volume 在單一 AZ，gp3 也不是跨 AZ 多機共享 NFS。"],
+["FSx for Windows File Server accessed only through SMB.","題目要求 NFS；此服務的 Windows SMB 語意不匹配。"],
+["S3 objects accessed as if they were a native POSIX NFS mount.","S3 原生物件 API 不等同原生共享 POSIX NFS。"]],a:[0],note:"把『file』拆成協定、共享範圍與故障範圍，不能只看到檔案就選 EBS。",ref:"https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html"},
+{id:"d10",pool:"diagnostic",d:2,skill:"tradeoff",t:"Replay the river",tags:"Kinesis SQS replay",q:"Three analytics applications need to independently process the same telemetry stream and replay the last 24 hours after a bug fix. Which service most directly supports retained records and independent consumer positions?",o:[
+["Kinesis Data Streams with an appropriate retention period and consumer configuration.","串流保留記錄，消費者維持各自讀取位置，可在保留期內重讀。"],
+["One SQS Standard queue with three competing consumers that delete messages after success.","訊息被其中一個消費者成功刪除後，不供其他消費者重播。"],
+["SNS email subscriptions only.","通知郵件不是多分析程式的保留串流與讀取位置機制。"],
+["An ALB forwarding each record to one target.","負載平衡不保留事件或消費位置供重播。"]],a:[0],note:"區分持久『待做工作』與可重播『事件紀錄』，兩者不只名稱不同。",ref:"https://docs.aws.amazon.com/streams/latest/dev/introduction.html"},
+{id:"d11",pool:"diagnostic",d:3,skill:"tradeoff",t:"A commitment is not a reservation",tags:"Compute Savings Plans Spot",q:"A platform has a measured, steady compute baseline. It expects to move usage among EC2 families, Regions, Fargate, and Lambda. It can commit to hourly spend for one year. Which purchasing option best matches the required flexibility?",o:[
+["Compute Savings Plans sized to the stable baseline.","每小時支出承諾涵蓋這些指定運算服務，較符合跨 family、Region 與服務的彈性。"],
+["EC2 Instance Savings Plans tied to one instance family in one Region.","彈性範圍較窄，不涵蓋本題所有遷移選擇。"],
+["Standard EC2 Reserved Instances for all Fargate and Lambda usage.","EC2 RI 不是這些服務的通用折扣。"],
+["Spot Instances as a guaranteed year-long capacity reservation.","Spot 可能中斷，也不是容量保留。"]],a:[0],note:"穩定基線決定承諾量，彈性範圍決定方案；折扣不代表容量保證。",ref:"https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html"},
+{id:"d12",pool:"diagnostic",d:3,skill:"multi",t:"Occasional SQL",tags:"Athena Parquet partitioning",q:"An analyst occasionally queries years of logs in S3, usually selecting a few columns for a single month. The team wants no always-running database and lower query scan costs. Which TWO actions best meet the requirements? (Choose TWO.)",o:[
+["Query the S3 dataset with Amazon Athena.","Athena 適合直接對 S3 執行低頻 SQL，不需維持常駐資料庫叢集。"],
+["Store data in compressed Parquet and partition by a suitable date field used by the queries.","欄式格式及 partition pruning 可減少不必要掃描。"],
+["Move every object to Deep Archive immediately before each query.","需要先還原才可查詢，無法直接支援此分析流程。"],
+["Create an always-running large provisioned data warehouse without assessing utilization.","違反避免常駐資料庫的需求，也沒有先針對掃描量最佳化。"],
+["Use SELECT * and scan all years for every monthly report.","增加掃描量，與縮小月份與欄位的目標相反。"]],a:[0,1],note:"先選執行模型，再減少掃描量；serverless 本身不會自動修正不良資料格式。",ref:"https://docs.aws.amazon.com/athena/latest/ug/performance-tuning.html"},
+{id:"u01",pool:"duel",pair:"db",d:1,skill:"tradeoff",t:"雙子帳本 · 第一幕",tags:"RDS Multi AZ read replica",q:"The island's order database uses RDS MySQL. The priority is automatic recovery if its AZ fails. Extra read capacity is NOT required. Which change most directly meets this objective?",o:[
+["Configure a Multi-AZ DB instance deployment with one standby.","同步 standby 與自動 failover 針對 AZ 故障；本題不需要讀擴展。"],
+["Add an asynchronous read replica and rely only on manual promotion.","可讀擴展，但這個手動方案不符合自動復原需求。"],
+["Use a larger Single-AZ primary.","仍在同一 AZ 故障範圍內。"],
+["Enable a query-result cache only.","快取不能替代資料庫故障切換。"]],a:[0],note:"這幕的關鍵是 automatic recovery，不是 read throughput。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"},
+{id:"u02",pool:"duel",pair:"db",d:1,skill:"tradeoff",t:"雙子帳本 · 條件改變",tags:"RDS Multi AZ read replica",q:"The database already has a traditional Multi-AZ DB instance standby. Now the priority changes: lag-tolerant reporting SELECT queries overload the primary. Keep the existing failover capability. Which change addresses the NEW requirement?",o:[
+["Add read replicas and route the reporting queries to them.","增加唯讀副本，另外分攤可接受延遲的讀取；保留原本 Multi-AZ。"],
+["Route reports to the existing single Multi-AZ standby.","此 deployment 的 standby 不提供讀查詢。"],
+["Remove Multi-AZ and run reporting on the same primary.","移除既有韌性且未分攤瓶頸。"],
+["Increase backup retention only.","備份不增加線上查詢容量。"]],a:[0],note:"同樣是 RDS，需求由 failover 改成 read scaling，答案跟著變。Multi-AZ DB cluster 是另一種可讀 standby 的部署，別一概而論。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"},
+{id:"u03",pool:"duel",pair:"events",d:1,skill:"tradeoff",t:"港口包裹 · 第一幕",tags:"SQS Kinesis queue stream",q:"Workers must process image-resize jobs. Each job should be handled by one available worker, and failed jobs should be retried. There is no replay requirement for successfully completed jobs. Which design is the simplest fit?",o:[
+["SQS with competing workers, visibility timeout, and idempotent processing.","工作佇列提供緩衝、競爭消費與失敗重試；消費者要防重複副作用。"],
+["Kinesis with every worker independently replaying every record.","可做串流處理，但不如 queue 直接對應一份工作由任一工人完成的需求。"],
+["SNS direct fan-out to every worker.","會把工作分給多個訂閱者，不是其中一個工人做一份。"],
+["CloudFront cached responses.","內容快取不提供可靠工作分派。"]],a:[0],note:"任一工人完成後不需重播：queue。不是所有非同步工作都需要 stream。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html"},
+{id:"u04",pool:"duel",pair:"events",d:2,skill:"tradeoff",t:"港口包裹 · 條件改變",tags:"SQS Kinesis replay",q:"The port now records telemetry, not jobs. Two analytics teams each need every event and must replay earlier records after deploying new code. Which design best fits this CHANGED requirement?",o:[
+["Kinesis Data Streams with retained records and independent consumers.","保留事件及獨立消費位置，供各團隊重播。"],
+["One SQS queue where both teams compete and delete after success.","成功刪除的工作不再供另一團隊重讀。"],
+["Direct synchronous calls only, with no retained event store.","缺少持久保留與重播機制。"],
+["An ALB that round-robins events between the teams.","每筆通常送給其中一個目標，也沒有串流保存。"]],a:[0],note:"條件由 work distribution 改為 independent replay，選擇從 queue 轉為 stream。",ref:"https://docs.aws.amazon.com/streams/latest/dev/introduction.html"},
+{id:"u05",pool:"duel",pair:"edge",d:2,skill:"tradeoff",t:"星光航線 · 第一幕",tags:"CloudFront Global Accelerator caching",q:"Tourists worldwide repeatedly download identical HTTPS images. The goal is to cache content near viewers and reduce requests to the S3 origin. Which service best fits?",o:[
+["CloudFront with an appropriate cache key and TTL.","邊緣快取重複內容，降低 origin 請求與距離。"],
+["Global Accelerator without any content cache.","改善應用路徑但不提供物件快取。"],
+["S3 Transfer Acceleration as a replacement for a CDN cache.","可改善部分 S3 傳輸，但不是 CDN 內容快取。"],
+["Route 53 failover routing only.","DNS 主備切換不會快取照片。"]],a:[0],note:"這幕是 cacheable HTTP content；真正要消除的是重複 origin 讀取。",ref:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"},
+{id:"u06",pool:"duel",pair:"edge",d:2,skill:"tradeoff",t:"星光航線 · 條件改變",tags:"Global Accelerator UDP anycast",q:"The festival adds an interactive UDP game hosted behind regional endpoints. It needs static anycast IPs and health-based routing; caching images is no longer the objective. Which service best fits this CHANGED requirement?",o:[
+["Global Accelerator.","支援 TCP/UDP 應用與固定 anycast IP、健康導流。"],
+["CloudFront with the image cache TTL increased.","影像 CDN 的設定不能把它變成通用 UDP 遊戲代理。"],
+["S3 Transfer Acceleration.","對象是 S3 物件，不是此應用協定。"],
+["A longer DNS TTL alone.","不提供指定的固定 anycast IP 路由能力。"]],a:[0],note:"同樣是全球服務，協定與固定 IP 要求一變，工具就變。",ref:"https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html"},
+{id:"u07",pool:"duel",pair:"files",d:2,skill:"tradeoff",t:"工坊檔案 · 第一幕",tags:"EFS FSx NFS SMB",q:"Linux builders across AZs need concurrent access to shared files using NFS and POSIX-style permissions. Which managed service best fits?",o:[
+["Regional EFS.","提供多 AZ 的共享 NFS。"],
+["FSx for Windows File Server using SMB.","Windows SMB 不符合這幕的 NFS 協定要求。"],
+["An individual EBS volume in one AZ.","不是跨 AZ 共享 NFS 服務。"],
+["Independent instance-store disks.","各自本機磁碟不自動共享，且主機生命週期會影響資料。"]],a:[0],note:"先看 NFS 與跨 AZ 共享，不要被『檔案』一詞帶著走。",ref:"https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html"},
+{id:"u08",pool:"duel",pair:"files",d:2,skill:"tradeoff",t:"工坊檔案 · 條件改變",tags:"FSx Windows SMB Active Directory",q:"The new workshop uses Windows clients. It must preserve SMB shares, Windows ACLs, and Active Directory integration. Which service best fits this CHANGED requirement?",o:[
+["FSx for Windows File Server.","符合 Windows 原生檔案語意與 AD 整合。"],
+["EFS because all file systems provide the same protocol.","EFS 是 NFS，不是同樣的 Windows SMB 檔案服務。"],
+["S3 REST API without a gateway or adaptation.","原生物件介面不保留此完整 Windows 檔案共享介面。"],
+["FSx for Lustre for Windows SMB shares.","Lustre 著重 HPC 平行檔案系統，不符合此 SMB 需求。"]],a:[0],note:"NFS 改為 SMB＋Windows ACL＋AD，答案也要改，不是把上一幕答案照抄。",ref:"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html"},
+{id:"u09",pool:"duel",pair:"endpoint",d:0,skill:"tradeoff",t:"祕密通道 · 第一幕",tags:"S3 gateway interface endpoint",q:"EC2 instances inside one VPC need private access to S3 in the same Region. No on-premises access is needed. The architect wants to avoid additional endpoint hourly charges. Which endpoint type fits?",o:[
+["An S3 gateway endpoint associated with the relevant route tables.","適用同 Region VPC 內 S3，不另收 endpoint 費。"],
+["An S3 interface endpoint solely because it is always free.","Interface endpoint 有額外計費，不能假設免費。"],
+["An internet gateway plus public instance addresses.","不是這題指定的私有 endpoint 存取。"],
+["Only a private hosted zone.","DNS 命名不會建立存取路徑。"]],a:[0],note:"VPC 內＋同 Region＋endpoint 費用優先：先評估 gateway endpoint。",ref:"https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html"},
+{id:"u10",pool:"duel",pair:"endpoint",d:0,skill:"tradeoff",t:"祕密通道 · 條件改變",tags:"S3 interface endpoint on premises",q:"The port now needs on-premises applications to access S3 privately through existing Direct Connect private connectivity into a VPC. DNS and routing will be configured appropriately. Which endpoint type supports this CHANGED access path?",o:[
+["An S3 interface endpoint reachable through the private connection.","Interface endpoint 可支援 on-premises 透過 VPN 或 Direct Connect 的私有存取，需配置 DNS、路由與 SG。"],
+["Reuse only the S3 gateway endpoint from inside the VPC.","Gateway endpoint 不能直接延伸給 on-premises 經此路徑使用。"],
+["Only add a security-group rule; no endpoint is needed.","SG 是流量規則，不是到 S3 的服務 endpoint。"],
+["Publish a public S3 website endpoint.","不是私有存取，也不符合原本資料存取要求。"]],a:[0],note:"改變的是存取來源與路徑，不是 S3 服務本身；不能把 gateway endpoint 視為任何來源通用。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html"},
+{id:"u11",pool:"duel",pair:"purchase",d:3,skill:"tradeoff",t:"金幣契約 · 第一幕",tags:"Savings Plans baseline commitment",q:"The council has measured a stable compute baseline and can commit to hourly spend. It wants discounts while moving workloads among EC2, Fargate, and Lambda. Which option best matches?",o:[
+["Compute Savings Plans for the measured baseline.","穩定支出承諾可對應跨指定運算服務的彈性折扣。"],
+["Spot Instances as a substitute for Fargate and Lambda discounts.","Spot EC2 不是上述服務的通用支出承諾方案。"],
+["An On-Demand Capacity Reservation as a universal discount.","Capacity Reservation 主要保留 EC2 容量，不是此通用折扣機制。"],
+["A commitment equal to the highest one-time peak regardless of baseline.","高峰不等於穩定基線，過度承諾可能浪費。"]],a:[0],note:"先 rightsize，再對穩定基線承諾；承諾與容量保留分開看。",ref:"https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html"},
+{id:"u12",pool:"duel",pair:"purchase",d:3,skill:"tradeoff",t:"金幣契約 · 條件改變",tags:"Spot checkpoint batch",q:"The new workload consists of flexible EC2 batch simulations. Tasks checkpoint frequently, can retry after interruptions, and have no strict completion deadline. There is no reliable year-long baseline. Which option should be evaluated first to reduce compute cost?",o:[
+["A diversified Spot fleet with checkpoint recovery and interruption handling.","可中斷、可重試、時間彈性的批次適合先評估 Spot。"],
+["A three-year commitment sized to the largest experimental burst.","沒有可靠基線，容易承諾過量。"],
+["Dedicated Hosts solely for the lowest generic batch price.","有特定授權等用途，不是此情境的通用省錢答案。"],
+["On-Demand Capacity Reservations assumed to provide Spot-like discounts.","容量保留不會自然變成 Spot 折扣。"]],a:[0],note:"原本是穩定基線，現在是可中斷的彈性批次；不要只背『省錢＝Savings Plans』。",ref:"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"},
+{id:"m01",pool:"multi",d:0,skill:"multi",t:"雙鎖密庫",tags:"S3 KMS cross-account",q:"A role in account B must read SSE-KMS objects in a private bucket in account A using a customer managed key. Network access already works. Which TWO authorization layers must allow this operation? (Choose TWO.)",requirements:["Allow reading the S3 object across accounts.","Allow decrypting its customer managed KMS key across accounts."],matches:{0:0,1:1},o:[
+["Grant cross-account s3:GetObject through the bucket policy and the reader's IAM permissions.","S3 層要能讀物件；網路通不代表已授權。"],
+["Configure the KMS key policy to allow the external account and grant kms:Decrypt to the reader through IAM.","跨帳戶 KMS 需 key policy 與外部身分 IAM 配合。"],
+["Grant kms:Encrypt only.","讀取需要解密，不是只有加密。"],
+["Make the bucket public to bypass all KMS checks.","S3 公開授權不會略過 KMS 解密檢查。"],
+["Add only a security-group rule for the bucket ARN.","網路規則不能取代 S3 與 KMS 授權。"]],a:[0,1],note:"用兩個需求檢查完整組合：物件讀取＋金鑰解密，少一層就不能完成。",ref:"https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html"},
+{id:"m02",pool:"multi",d:0,skill:"multi",t:"前門與後門",tags:"CloudFront OAC signed URL",q:"Only authenticated customers should view CloudFront content for ten minutes. The S3 REST origin must remain private and accept reads only from the designated distribution. Which TWO actions address the separate viewer and origin controls? (Choose TWO.)",requirements:["Restrict the viewer's access window.","Restrict S3 reads to the designated CloudFront distribution."],matches:{0:0,1:1},o:[
+["After validating customer access, issue a CloudFront signed URL that expires in ten minutes.","viewer 的短期授權由 signed URL 控制。"],
+["Use OAC and a distribution-restricted S3 bucket policy with public access blocked.","origin 層用 OAC 與受限政策保護。"],
+["Set the CloudFront cache TTL to ten minutes as the only viewer control.","快取期限不是使用者授權期限。"],
+["Use an S3 presigned URL as the only viewer path.","使用者會直連 S3，不符合只能透過指定 distribution 的設計。"],
+["Enable S3 Versioning as the origin access control.","Versioning 不控制 CloudFront 專用存取。"]],a:[0,1],note:"一個 signed URL 不能自動修好 origin policy；一個 OAC 也不會自動辨識付費玩家。",ref:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html"},
+{id:"m03",pool:"multi",d:1,skill:"multi",t:"不會重複扣款的信差",tags:"SQS visibility idempotency",q:"A worker consumes SQS Standard messages. Processing usually takes four minutes, while visibility timeout is 30 seconds. Duplicate delivery could charge a customer twice. Which TWO changes address both the timeout mismatch and duplicate side effects? (Choose TWO.)",requirements:["Reduce premature redelivery during a normal processing attempt.","Prevent duplicate business side effects even when a message is redelivered."],matches:{0:0,1:1},o:[
+["Set an appropriate visibility timeout and extend it while necessary.","減少工作尚未完成就再度可見的狀況。"],
+["Use an idempotency key and durable processing state around the payment operation.","即使重送也不應重複執行付款副作用。"],
+["Delete the message before processing starts.","雖減少重送，失敗會遺失工作，不符合可靠處理。"],
+["Rely on SQS Standard to guarantee exactly-once delivery.","Standard 可能重送，不能這樣假設。"],
+["Only increase message retention to 14 days.","Retention 不是工作期間的可見性控制，也不防重複扣款。"]],a:[0,1],note:"Timeout 解決『過早再投遞』；冪等解決『重送仍安全』，兩者不互相替代。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"},
+{id:"m04",pool:"multi",d:1,skill:"multi",t:"錯單與警鈴",tags:"SQS DLQ CloudWatch alarm",q:"Malformed SQS messages repeatedly fail. The team must preserve them separately after a bounded number of attempts and notify operators when this happens. Which TWO actions meet these requirements? (Choose TWO.)",requirements:["Isolate messages after repeated failures without discarding them.","Alert operators when failed messages accumulate."],matches:{0:0,1:1},o:[
+["Configure a redrive policy with maxReceiveCount and a dead-letter queue.","達重試次數後隔離到 DLQ，保留供調查。"],
+["Create a CloudWatch alarm on the DLQ's visible-message metric with an appropriate notification action.","監控 DLQ 訊息並通知值班人員，避免只是默默累積。"],
+["Shorten retention so malformed messages disappear before investigation.","可能先丟掉調查資料，違反保留要求。"],
+["Scale workers indefinitely without a redrive policy.","壞資料仍失敗，也沒有設定重試邊界或隔離。"],
+["Only extend the source queue's visibility timeout.","延後重試但不達成隔離與通知。"]],a:[0,1],note:"可靠隔離與主動偵測是兩件事；DLQ 本身不是一套完整營運流程。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"},
+{id:"m05",pool:"multi",d:2,skill:"multi",t:"讀取壓力分流",tags:"RDS read replica ElastiCache",q:"A relational database serves two heavy read workloads: lag-tolerant ad hoc reports and repeated product lookups that may be stale for 60 seconds. Keep the relational primary for transactions. Which TWO changes target the two read patterns? (Choose TWO.)",requirements:["Offload lag-tolerant relational reporting queries.","Avoid repeating identical product lookups within the allowed freshness window."],matches:{0:0,1:1},o:[
+["Route reporting SELECT queries to RDS read replicas.","將報表導向可讀副本，接受複寫延遲。"],
+["Cache product lookups in ElastiCache with a suitable TTL and invalidation strategy.","避免反覆執行相同讀取，需符合 60 秒陳舊度要求。"],
+["Send all reports to a traditional Multi-AZ DB instance standby.","此 standby 不提供讀取。"],
+["Extend all cached values indefinitely without invalidation.","違反資料最多可陳舊 60 秒的限制。"],
+["Increase backup retention as the read-scaling mechanism.","備份留存不是線上讀擴展。"]],a:[0,1],note:"不是每種讀取都該用同一把工具：任意報表讀副本，重複且可陳舊的查詢可快取。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"},
+{id:"m06",pool:"multi",d:2,skill:"multi",t:"不可拆的長工",tags:"ECS Fargate EFS Lambda",q:"A Linux container runs an indivisible 35-minute rendering job. Concurrent tasks across AZs must read and write a shared NFS file system. The team does not want to manage EC2 hosts. Which TWO services fit? (Choose TWO.)",requirements:["Run the long-lived container without managing EC2 hosts.","Provide shared NFS storage accessible by tasks across AZs."],matches:{0:0,1:1},o:[
+["ECS tasks on Fargate with the required task configuration.","可執行此容器工作而不自行管理 EC2 主機。"],
+["Regional EFS with appropriate mount targets and access configuration.","提供多 AZ 的共享 NFS，可供適當配置的 Fargate tasks 掛載。"],
+["One Lambda invocation with a 35-minute timeout.","Lambda 單次 invocation 最長 15 分鐘。"],
+["One gp3 EBS volume shared across all AZs.","不是跨 AZ 多工共享 NFS。"],
+["Instance-store volumes attached to Fargate-managed hosts by the user.","Fargate 不提供讓使用者管理底層主機磁碟的這種方案，也不是共享 NFS。"]],a:[0,1],note:"運算與儲存各找一個滿足硬限制的元件，再檢查整合；不能只看 serverless 這個標籤。",ref:"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html"},
+{id:"m07",pool:"multi",d:3,skill:"multi",t:"省下運算與過路費",tags:"Spot S3 gateway endpoint",q:"Checkpointed EC2 batch jobs can tolerate interruptions. They also transfer large volumes to same-Region S3 through a NAT gateway. Which TWO changes directly address compute and NAT data-processing costs? (Choose TWO.)",requirements:["Reduce the price of interruption-tolerant EC2 work.","Remove same-Region S3 traffic from the NAT data path."],matches:{0:0,1:1},o:[
+["Use diversified Spot capacity with retry and checkpoint recovery.","可中斷工作適合評估 Spot；需有容量與中斷處理。"],
+["Configure an S3 gateway endpoint in the workload route tables.","S3 流量改走 endpoint，避免該部分 NAT 處理費。"],
+["Reserve the maximum experimental peak for three years without analyzing usage.","短期峰值不是適當的穩定承諾依據。"],
+["Make the S3 bucket public but retain the same NAT route.","公開權限不會改變 NAT 流量路徑。"],
+["Enable S3 Transfer Acceleration only to eliminate EC2 compute charges.","傳輸加速不會免除運算費，也不是移除 NAT 路徑的機制。"]],a:[0,1],note:"拆帳單找兩種根因：算力單價與資料經過的計費元件。",ref:"https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html"},
+{id:"m08",pool:"multi",d:3,skill:"multi",t:"分析與預算警報",tags:"Cost Explorer AWS Budgets",q:"Finance wants to identify which services drove last month's increase and receive notifications when forecast monthly spend exceeds a threshold. Which TWO tools address the separate requirements? (Choose TWO.)",requirements:["Analyze historical spend by service.","Notify on forecast spend above the configured budget."],matches:{0:0,1:1},o:[
+["Use Cost Explorer to group and compare historical costs by service.","分析歷史費用來源與趨勢。"],
+["Configure AWS Budgets forecast notifications.","依預估費用設定警報；不是硬性消費上限。"],
+["Use CloudTrail as a replacement for all billing analytics.","API 稽核不是費用分組與帳務趨勢工具。"],
+["Treat a CloudWatch CPU alarm as an account-wide budget forecast.","CPU 不涵蓋各類服務與價格項目。"],
+["Assume a budget notification instantly stops every charge.","通知不等於即時硬上限，也可能有資料延遲。"]],a:[0,1],note:"歷史成本歸因與未來門檻通知分工不同；不要宣稱警報可保證不超支。",ref:"https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html"},
+{id:"a01",pool:"holdA",d:0,skill:"tradeoff",t:"Assessment A / 01",tags:"private access",q:"A company connects its data center to a VPC through a Site-to-Site VPN. Applications in the data center must access S3 privately through this connection. The architect will configure DNS and security groups. Which design supports this access path?",o:[
+["Create an S3 interface endpoint in the VPC and configure private routing and DNS for on-premises clients.","Interface endpoint 可支援 on-premises 經 VPN 私有存取，需正確路由、DNS 與 SG。"],
+["Create only an S3 gateway endpoint and route on-premises traffic through it.","Gateway endpoint 不能以這種方式延伸給 on-premises 使用。"],
+["Use only a private hosted zone pointing to a public website endpoint.","DNS 改名不會把公有 website endpoint 變成符合需求的私有服務 endpoint。"],
+["Assign public IP addresses to the data-center clients and bypass the VPN.","不符合指定的私有連線路徑。"]],a:[0],note:"判斷來源是否在 VPC 內；不要把『S3 私有』一律等同 gateway endpoint。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html"},
+{id:"a02",pool:"holdA",d:0,skill:"service",t:"Assessment A / 02",tags:"credential rotation",q:"A business application must retrieve a database password at runtime. The password must be stored encrypted and rotated automatically using a supported RDS integration. Which option minimizes custom credential-rotation work?",o:[
+["Store the password in Secrets Manager and configure rotation and least-privilege retrieval.","Secrets Manager 支援祕密管理與適當資料庫輪替整合。"],
+["Put the password in an encrypted AMI and rebuild the fleet manually whenever it changes.","需自行安排發佈與輪替，不符合最少自建管理的要求。"],
+["Store the password in a private Git repository and rely on access controls only.","祕密仍在版本歷史，沒有資料庫密碼自動輪替機制。"],
+["Use an S3 lifecycle rule to rotate the database password.","Lifecycle 管理物件轉儲存類別或到期，不會輪替 DB 密碼。"]],a:[0],note:"『加密儲存』與『自動輪替』要同時滿足。",ref:"https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"},
+{id:"a03",pool:"holdA",d:0,skill:"multi",t:"Assessment A / 03",tags:"layered authorization",q:"A role in an external AWS account must download objects encrypted with a customer managed KMS key. Both the bucket and the key belong to the owning account. Which TWO permissions paths must be configured? (Choose TWO.)",o:[
+["Cross-account object-read authorization in the S3 bucket policy and the external role's IAM permissions.","授權讀取物件本身。"],
+["Cross-account decrypt authorization in the KMS key policy and the external role's IAM permissions.","另外授權使用 KMS key 解密。"],
+["Only kms:GenerateDataKey for the reader, without kms:Decrypt.","讀既有加密物件的需求不能只靠產生資料金鑰。"],
+["Only a security-group rule allowing port 443.","HTTPS 可通不代表有 S3 或 KMS 授權。"],
+["Only enable bucket versioning.","版本保留不授權跨帳戶讀取與解密。"]],a:[0,1],note:"外部角色必須同時通過 S3 與 KMS 層，不能只補其中一邊。",ref:"https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html"},
+{id:"a04",pool:"holdA",d:0,skill:"tradeoff",t:"Assessment A / 04",tags:"web protection",q:"An internet-facing ALB receives malicious HTTP requests containing SQL injection patterns. The team wants managed request inspection before traffic reaches the application. Which control most directly fits?",o:[
+["Associate an AWS WAF web ACL with the ALB and configure suitable managed rules.","WAF 能依 HTTP 內容套用規則；應用仍需參數化查詢等防護。"],
+["Enable only Shield Standard and assume it filters SQL expressions.","DDoS 防護不取代 SQL injection 的 HTTP 內容檢查。"],
+["Add a database read replica.","提升讀取能力，不會過濾惡意 HTTP。"],
+["Use only security-group port rules to inspect request bodies.","SG 不解析 HTTP body 的 SQL 特徵。"]],a:[0],note:"題目明確要求 HTTP request inspection，而不是單純流量容量或網路 port 過濾。",ref:"https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html"},
+{id:"a05",pool:"holdA",d:1,skill:"multi",t:"Assessment A / 05",tags:"asynchronous reliability",q:"A payment worker receives SQS Standard messages. Some valid tasks run longer than the configured visibility timeout. The same payment can be retried after worker failures. Which TWO controls reduce concurrent redelivery and protect against duplicate charges? (Choose TWO.)",o:[
+["Use a visibility timeout appropriate to processing time and extend it if needed.","減少尚未完成就重新可見的狀況。"],
+["Persist an idempotency key and enforce safe handling of repeated payment requests.","重送時避免重複扣款，需在業務操作中可靠實作。"],
+["Delete each message immediately before attempting payment.","若付款失敗會遺失工作。"],
+["Depend on Standard queues to provide exactly-once side effects.","佇列與業務副作用不能作此保證。"],
+["Only increase the queue's retention period.","留存期限不處理執行中可見性或冪等。"]],a:[0,1],note:"投遞與付款是不同層：降低重送不等於可以不做冪等。",ref:"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"},
+{id:"a06",pool:"holdA",d:1,skill:"tradeoff",t:"Assessment A / 06",tags:"database recovery",q:"A transactional RDS PostgreSQL database currently runs in one AZ. Automatic failover during an AZ outage is required, but the application does not need extra read throughput. Which design best matches?",o:[
+["Use a Multi-AZ DB instance deployment with a synchronous standby.","直接針對跨 AZ 故障與自動切換，不要求讀擴展。"],
+["Create an asynchronous read replica and depend only on an operator to promote it.","題目要求自動切換，手動 promotion 方案不符合。"],
+["Increase the size of the Single-AZ DB instance.","仍然受單 AZ 故障影響。"],
+["Take a snapshot once a month as the only availability mechanism.","備份不提供即時自動故障切換。"]],a:[0],note:"依本題目標選擇，不要把 read replica 與 standby 當成同義詞。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"},
+{id:"a07",pool:"holdA",d:1,skill:"service",t:"Assessment A / 07",tags:"recovery objectives",q:"A contract permits losing at most five minutes of committed data after a disaster and requires restoring service within one hour. Which objective pair correctly expresses these limits?",o:[
+["RPO of five minutes and RTO of one hour.","資料可退回多久是 RPO，恢復服務可花多久是 RTO。"],
+["RTO of five minutes and RPO of one hour.","把資料遺失窗口與恢復時間顛倒。"],
+["An RPO of one hour with no RTO requirement.","忽略一小時復原限制且放寬資料遺失。"],
+["An RTO of one hour with no RPO requirement.","只描述復原時間，漏掉資料損失限制。"]],a:[0],note:"先把資料與服務兩個主詞拆開再配指標。",ref:"https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/recovery-objectives.html"},
+{id:"a08",pool:"holdA",d:2,skill:"tradeoff",t:"Assessment A / 08",tags:"global delivery",q:"A publisher serves identical HTTPS files from S3 to users on several continents. It wants edge caching to reduce origin requests and user latency. Which approach best meets both objectives?",o:[
+["Put CloudFront in front of S3 and configure suitable cache keys and TTLs.","CDN 邊緣快取可同時減少 origin 重複讀取與用戶距離。"],
+["Use Global Accelerator alone and assume it caches S3 objects.","Global Accelerator 不提供內容快取。"],
+["Use Route 53 latency-based routing to the same single S3 origin only.","DNS 本身不建立邊緣快取副本。"],
+["Increase the S3 storage class price to improve caching.","儲存類別不是 CDN 快取政策。"]],a:[0],note:"兩個目標都需滿足；只改善路徑卻不快取的方案並不完整。",ref:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"},
+{id:"a09",pool:"holdA",d:2,skill:"service",t:"Assessment A / 09",tags:"managed containers",q:"A containerized scientific job takes 50 minutes and cannot be split. The team wants to run it without managing EC2 hosts. Which option satisfies the runtime requirement?",o:[
+["Run the container as an ECS task on Fargate.","符合長時間容器與不管理 EC2 的要求。"],
+["Run one Lambda invocation with a 50-minute timeout.","單次 invocation 不支援這麼長的時間。"],
+["Increase Lambda memory to remove its timeout limit.","記憶體不移除執行時間上限。"],
+["Use CloudFront as the container execution environment.","CloudFront 是內容傳遞服務，不是此長時間容器執行平台。"]],a:[0],note:"先檢查不可拆分與最大執行時間這兩個硬限制。",ref:"https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html"},
+{id:"a10",pool:"holdA",d:2,skill:"tradeoff",t:"Assessment A / 10",tags:"partition distribution",q:"A DynamoDB application sends nearly all writes to a partition key with one constant value. Throttling occurs around that access pattern. Which change most directly addresses the data-model bottleneck?",o:[
+["Redesign the partition key to distribute access, using write sharding if appropriate and planning the resulting queries.","從 key 分布修正熱點，並同時處理查詢與聚合。"],
+["Switch to on-demand and assume a constant hot key can never throttle.","容量模式不保證免除鍵熱點與其他吞吐限制。"],
+["Increase every item's size.","加大單筆消耗，不會分散 partition key。"],
+["Make the sort key constant too.","不改善熱 partition key 的集中存取。"]],a:[0],note:"題目已指出存取集中；不要只改購買模式，卻不處理資料模型。",ref:"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"},
+{id:"a11",pool:"holdA",d:3,skill:"tradeoff",t:"Assessment A / 11",tags:"storage requirements",q:"A unique dataset is rarely read but must survive an AZ failure and remain available for immediate millisecond access. It will be retained for years. Which storage class is the most suitable candidate to evaluate?",o:[
+["S3 Standard-IA, including retrieval fees and minimum-storage considerations in the cost estimate.","多 AZ 與即時取用符合限制，再比較總成本。"],
+["S3 One Zone-IA as the only copy.","單 AZ 不能符合此故障範圍要求。"],
+["S3 Glacier Deep Archive without restoring objects before access.","不符合即時毫秒級存取。"],
+["S3 Glacier Flexible Retrieval for every direct interactive read without restoration.","此封存模式不符合直接即時存取要求。"]],a:[0],note:"先滿足 AZ 韌性與取回時間，再比較儲存單價。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"},
+{id:"a12",pool:"holdA",d:3,skill:"multi",t:"Assessment A / 12",tags:"cost controls",q:"A test environment is needed only during business hours. Developers also left storage volumes after deleting test instances. Which TWO actions address the unnecessary spend without discarding required data blindly? (Choose TWO.)",o:[
+["Schedule supported EC2 instances to stop outside business hours and start before use.","避免無使用需求的運算時數，仍需考慮其他持續費用。"],
+["Inventory unattached EBS volumes and remove only those confirmed unnecessary under the retention policy.","核對擁有者與保留需求後清理閒置磁碟。"],
+["Buy a three-year commitment for the maximum 24-hour test capacity before scheduling.","先承諾閒置尖峰可能浪費，應先消除不用的時數。"],
+["Delete all snapshots and volumes without checking their purpose.","可能破壞必要備份與資料保留。"],
+["Assume stopping EC2 eliminates every storage and networking charge.","停止運算不代表其他資源不計費。"]],a:[0,1],note:"先消閒置再考慮承諾；儲存清理必須尊重保留需求。",ref:"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html"},
+{id:"b01",pool:"holdB",d:0,skill:"tradeoff",t:"Assessment B / 01",tags:"least privilege network",q:"An application has an ALB, an EC2 application tier, and an RDS database. Only the application tier should initiate MySQL connections to RDS. Instances are replaced frequently. Which inbound database security-group rule best matches?",o:[
+["Allow TCP 3306 from the application tier's security group.","以來源 SG 表達應用層信任，符合變動 instances 與最小權限。"],
+["Allow TCP 3306 from the entire VPC CIDR.","允許非應用層的 VPC 來源，超過限制。"],
+["Allow TCP 3306 from the ALB security group only.","ALB 不是此架構的資料庫呼叫者。"],
+["Allow TCP 3306 from 0.0.0.0/0.","對所有 IPv4 來源開放，不符最小權限。"]],a:[0],note:"畫出真正發起 DB 連線的那一層；不要只因 ALB 是前門就用它當每層來源。",ref:"https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html"},
+{id:"b02",pool:"holdB",d:0,skill:"service",t:"Assessment B / 02",tags:"temporary access",q:"A partner without AWS credentials needs to download a single private S3 object for up to 20 minutes. CloudFront is not required. The bucket must not be made public. Which approach is the simplest fit?",o:[
+["Generate a presigned S3 GET URL with an appropriate expiration using an authorized identity.","提供有限期的已簽署動作；簽署憑證若更早失效，連結也會更早失效。"],
+["Create an IAM user and email its permanent access keys to the partner.","新增長期憑證管理與風險，超出單次限時下載的需求。"],
+["Set the object's cache-control max-age to 20 minutes and make it public.","快取期限不是授權期限，且違反不公開。"],
+["Enable versioning to grant temporary anonymous access.","Versioning 不授予這種取用權限。"]],a:[0],note:"沒有 CloudFront-only 的限制時，單物件限時分享可直接用 presigned URL。",ref:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html"},
+{id:"b03",pool:"holdB",d:0,skill:"tradeoff",t:"Assessment B / 03",tags:"policy evaluation",q:"An IAM role in a member account has an identity policy allowing an API action. An applicable Organizations SCP explicitly denies that action. The role is an ordinary IAM role, not a service-linked role. What is the result?",o:[
+["The action is denied because the applicable explicit deny is not overridden by the identity allow.","受 SCP 約束的普通 role 無法以 IAM allow 蓋過 explicit deny。"],
+["The action is allowed because identity policies always override SCPs.","權限評估不是這個優先關係。"],
+["The action becomes allowed when called from the CLI instead of the console.","介面不同不會略過相同 API 的權限評估。"],
+["The SCP itself grants the role the permissions missing from IAM.","SCP 不直接授予權限。"]],a:[0],note:"先查 explicit deny；SCP 是邊界，不是額外的授權來源。",ref:"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"},
+{id:"b04",pool:"holdB",d:0,skill:"multi",t:"Assessment B / 04",tags:"public content protection",q:"A private S3 REST origin serves subscription documents through CloudFront. Readers must use expiring CloudFront links, and direct S3 access must be prevented. Which TWO controls address these requirements? (Choose TWO.)",o:[
+["Authorize readers in the application and generate expiring CloudFront signed URLs.","viewer 層限時授權。"],
+["Use OAC with a bucket policy restricted to the distribution and keep public access blocked.","origin 層防止直接 S3 讀取。"],
+["Use only a shorter CloudFront cache TTL.","TTL 不驗證訂閱者，也不關閉 S3 直接存取。"],
+["Use only an S3 presigned URL as the customer link.","直接 S3 存取不符合指定入口。"],
+["Rely only on hiding the S3 bucket name.","隱藏名稱不是存取控制。"]],a:[0,1],note:"一題兩層：客戶如何進 CDN，以及 CDN 如何進 origin。",ref:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html"},
+{id:"b05",pool:"holdB",d:1,skill:"multi",t:"Assessment B / 05",tags:"fanout buffer",q:"Each uploaded document triggers separate indexing and compliance services. Both services must receive every event, and each must retain a backlog during independent outages. Which TWO elements provide this design? (Choose TWO.)",o:[
+["Publish document events to an SNS topic.","對多個訂閱者發送事件副本。"],
+["Subscribe a separate SQS queue for each service, with the necessary permissions.","保留各自 backlog，隔離停機與重試。"],
+["Use a single queue with both services competing for messages.","不保證每個服務各取得每筆事件。"],
+["Deliver events only through synchronous calls with no persistence.","服務停機時沒有獨立持久緩衝。"],
+["Load balance each event to either service using an ALB.","選一個服務不等於兩個各收一份。"]],a:[0,1],note:"『both receive every event』與『independent backlog』要一起滿足。",ref:"https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html"},
+{id:"b06",pool:"holdB",d:1,skill:"tradeoff",t:"Assessment B / 06",tags:"application state",q:"An ALB distributes users across replaceable EC2 instances. Sessions live only in instance memory, so a failed instance logs users out. Which design change addresses state availability rather than just routing affinity?",o:[
+["Move sessions to an appropriately configured highly available shared session store.","把狀態移出可替換主機，並設計共享狀態層的故障切換與必要持久性。"],
+["Enable sticky sessions only and leave state solely on each instance.","黏著路由不能在 instance 故障後恢復該主機記憶體。"],
+["Disable all scale-in and assume instances never fail.","不能消除故障，且損失彈性。"],
+["Use a larger local disk for every in-memory session.","本機磁碟不會自動形成高可用共享 session。"]],a:[0],note:"路由親和性不是狀態容錯；也別忘了共享 store 本身的韌性。",ref:"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Replication.html"},
+{id:"b07",pool:"holdB",d:1,skill:"service",t:"Assessment B / 07",tags:"DNS failover",q:"Primary and standby regional websites are fully provisioned and data recovery is already designed. DNS should return the standby when the primary fails health checks. Which Route 53 policy is the best fit?",o:[
+["Failover routing with suitable health checks.","表達主備健康導流；切換仍受 TTL 與快取影響。"],
+["Simple routing always returning only the primary.","不依主備健康狀態自動選備站。"],
+["A one-week TTL as the failover mechanism.","延長快取可能使故障入口保留更久。"],
+["A private hosted zone that no public client can resolve.","不滿足公眾網站切換需求。"]],a:[0],note:"本題已具備備援容量與資料，剩下的問題是 DNS 主備導流，不是複寫。",ref:"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-failover.html"},
+{id:"b08",pool:"holdB",d:2,skill:"service",t:"Assessment B / 08",tags:"Windows file compatibility",q:"A Windows application must preserve SMB file shares, Windows access-control lists, and Active Directory integration after migration. Which managed file service most directly satisfies these compatibility requirements?",o:[
+["Amazon FSx for Windows File Server.","符合 Windows SMB、ACL 與 AD 整合需求。"],
+["Amazon EFS using native NFS only.","協定與檔案權限語意不匹配。"],
+["Amazon FSx for Lustre as a native SMB replacement.","Lustre 不是 Windows SMB 檔案服務。"],
+["An S3 bucket exposed only through object REST APIs.","原生物件 API 不保留上述完整檔案介面。"]],a:[0],note:"比對協定與權限模型，不是只比較『都是 storage』。",ref:"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html"},
+{id:"b09",pool:"holdB",d:2,skill:"tradeoff",t:"Assessment B / 09",tags:"stream retention",q:"A manufacturing system retains sensor events for multiple independent applications. A new application must reread the previous day's events from its own position. Which service best fits this retained-stream access model?",o:[
+["Kinesis Data Streams with a sufficient retention period.","可在保留期內從指定位置重讀，不同消費者獨立處理。"],
+["A single SQS queue whose completed messages were already deleted.","已刪除訊息不能當作昨日完整事件紀錄重播。"],
+["An SNS topic with only direct HTTP delivery and no archive or replay configuration.","這個明確未配置保存重播的方案不滿足需求。"],
+["An ALB access log as the complete sensor-event store.","HTTP 入口存取記錄不等同完整感測事件串流。"]],a:[0],note:"保留期、事件內容與獨立讀取位置是核心，不只是能『發送事件』。",ref:"https://docs.aws.amazon.com/streams/latest/dev/introduction.html"},
+{id:"b10",pool:"holdB",d:2,skill:"multi",t:"Assessment B / 10",tags:"read patterns",q:"A relational primary is overloaded by two workloads: arbitrary reporting queries that tolerate lag, and repeated catalog lookups that tolerate 30-second staleness. Which TWO changes target the distinct patterns while keeping transactions on the primary? (Choose TWO.)",o:[
+["Send the reporting queries to read replicas.","分攤允許複寫延遲的讀查詢。"],
+["Cache catalog results with a TTL and invalidation strategy respecting the freshness limit.","避免重複查詢且保留可接受新鮮度。"],
+["Send reports to the unreadable single standby of a traditional Multi-AZ DB instance deployment.","該 standby 不能處理報表查詢。"],
+["Retain all cached results forever without invalidation.","違反 30 秒陳舊度限制。"],
+["Only increase snapshot retention.","備份不分擔這兩種讀流量。"]],a:[0,1],note:"快取與讀副本分別處理不同讀型態，不能只記『DB 慢＝加 cache』。",ref:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"},
+{id:"b11",pool:"holdB",d:3,skill:"tradeoff",t:"Assessment B / 11",tags:"interruption tolerance",q:"A research team runs flexible EC2 simulations. Jobs checkpoint and can restart safely after interruptions; there is no strict completion deadline or stable long-term baseline. Which option should be evaluated first for compute savings?",o:[
+["Spot capacity diversified across suitable instance types and AZs with interruption recovery.","符合可中斷與彈性批次模式，仍需重試與容量分散。"],
+["A long-term commitment sized to the largest experimental peak.","沒有穩定基線，容易承諾過量。"],
+["Dedicated Hosts solely to obtain the lowest generic compute price.","沒有題目需要的特殊授權理由，不是此通用最佳解。"],
+["On-Demand Capacity Reservations assumed to automatically discount all usage.","容量保留不等於折扣方案。"]],a:[0],note:"先找可中斷性與穩定基線，才判斷採購模型。",ref:"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"},
+{id:"b12",pool:"holdB",d:3,skill:"multi",t:"Assessment B / 12",tags:"query cost optimization",q:"An analyst runs occasional SQL over S3 logs, usually for one day and a few fields. The team wants no always-running database and wants to reduce bytes scanned. Which TWO actions fit? (Choose TWO.)",o:[
+["Use Athena to query data in S3.","免維持常駐資料庫叢集的查詢方式。"],
+["Use compressed columnar files and date partitions that queries can prune.","減少不需要的欄位與日期掃描。"],
+["Use SELECT * over every date regardless of the report scope.","讀取不必要的欄位與月份，增加掃描。"],
+["Always move the queried objects into Deep Archive first.","需要先還原，妨礙直接查詢，並非掃描最佳化。"],
+["Keep a large provisioned warehouse running solely for this infrequent workload without evaluation.","不符合避免常駐資料庫的明確需求。"]],a:[0,1],note:"計費模型與掃描量是兩個維度；選 Athena 後仍需設計資料格式。",ref:"https://docs.aws.amazon.com/athena/latest/ug/performance-tuning.html"}
+];
+const allBank=[...bank,...retakeBank];
+const byId=new Map(allBank.map(q=>[q.id,q]));
+const reasons={service:"不清楚服務使用時機",tradeoff:"忽略限制或取捨",multi:"複選組合不完整",english:"英文題意誤讀",careless:"操作或粗心",unknown:"尚未釐清"};
+const modeNames={diagnostic:"英文診斷",duel:"服務對決",multi:"複選需求配對",holdA:"保留驗收 A",holdB:"保留驗收 B"};
+const blank=()=>({version:VERSION,records:{},days:[],seen:{},runs:[],mistakes:{}});
+let state=blank(),session=null,tab="retake",timer=null,storageOK=true;
+const main=document.getElementById("main"),nav=document.getElementById("nav"),sidebar=document.getElementById("sidebar");
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const dateKey=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
+function validState(s){
+ if(!s||s.version!==VERSION||!s.records||typeof s.records!=="object"||Array.isArray(s.records)||!Array.isArray(s.days))return false;
+ if(!s.days.every(d=>typeof d==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(d)))return false;
+ if(!Object.entries(s.records).every(([id,r])=>byId.has(id)&&r&&["attempts","correct","stage","due","last"].every(k=>Number.isSafeInteger(r[k])&&r[k]>=0)&&r.correct<=r.attempts&&r.stage<=4&&typeof r.lastOK==="boolean"))return false;
+ if(s.seen!==undefined&&(!s.seen||typeof s.seen!=="object"||Array.isArray(s.seen)||!Object.entries(s.seen).every(([id,t])=>byId.has(id)&&Number.isSafeInteger(t)&&t>=0)))return false;
+ if(s.mistakes!==undefined&&(!s.mistakes||typeof s.mistakes!=="object"||Array.isArray(s.mistakes)||!Object.entries(s.mistakes).every(([id,r])=>byId.has(id)&&Object.hasOwn(reasons,r))))return false;
+ if(s.runs!==undefined&&(!Array.isArray(s.runs)||!s.runs.every(r=>{
+ if(!r||!["diagnostic","holdA","holdB"].includes(r.mode)||!Number.isSafeInteger(r.at)||r.at<0||!Number.isFinite(r.elapsed)||r.elapsed<0||typeof r.fresh!=="boolean"||!Array.isArray(r.items))return false;
+ const ids=retakeBank.filter(q=>q.pool===r.mode).map(q=>q.id);
+ return same(r.items.map(i=>i?.id),ids)&&new Set(r.items.map(i=>i.id)).size===ids.length&&r.items.every(i=>{
+ const q=byId.get(i.id);
+ return Array.isArray(i.selected)&&new Set(i.selected).size===i.selected.length&&i.selected.every(n=>Number.isInteger(n)&&n>=0&&n<q.o.length)&&["sure","unsure","guess"].includes(i.confidence);
+ });
+ })))return false;
+ return true;
+}
+function normalizeState(s){
+ return {...s,seen:{...Object.fromEntries(Object.entries(s.records).map(([id,r])=>[id,r.last])),...s.seen},runs:s.runs||[],mistakes:s.mistakes||{}};
+}
+function notify(message,error=false){document.getElementById("toast").innerHTML=`<div class="notice ${error?"error":""}">${esc(message)}</div>`}
+function load(){
+ try{const raw=localStorage.getItem(KEY);if(raw){const parsed=JSON.parse(raw);if(!validState(parsed))throw new Error("進度格式不相容或資料損壞");state=normalizeState(parsed)}}
+ catch(e){storageOK=false;notify(`無法讀取學習進度：${e.message}。目前可繼續練習，但不會覆寫既有資料。請先匯出本次進度，或確認後重設。`,true)}
+}
+function save(){
+ if(!storageOK){notify("目前只保留本次開啟期間的進度，尚未存入瀏覽器。請匯出進度備份。",true);return}
+ try{localStorage.setItem(KEY,JSON.stringify(state))}
+ catch(e){storageOK=false;notify(`進度儲存失敗：${e.message}。本次仍可練習，請匯出備份。`,true)}
+}
+function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function same(a,b){return a.length===b.length&&a.every(x=>b.includes(x))}
+function due(q){const r=state.records[q.id];return !!r&&r.due<=Date.now()}
+function weak(q){const r=state.records[q.id];return !!r&&!r.lastOK}
+function isTimed(mode){return ["exam","diagnostic","holdA","holdB"].includes(mode)}
+function protectedPool(q){return ["diagnostic","holdA","holdB"].includes(q.pool)}
+function visibleBank(){return allBank.filter(q=>!protectedPool(q)||Object.hasOwn(state.records,q.id))}
+function runCorrect(run){return run.items.filter(i=>same(i.selected,byId.get(i.id).a)).length}
+function record(q,ok,confidence,hinted){
+ const now=Date.now(),old=state.records[q.id]||{attempts:0,correct:0,stage:0,due:0,last:0,lastOK:false};
+ const strong=ok&&confidence==="sure"&&!hinted;
+ // Repeating immediately must not advance a question through several spacing stages.
+ const advance=strong&&(old.stage===0||now-old.last>=20*3600000);
+ const stage=strong?(advance?Math.min(4,old.stage+1):old.stage):0;
+ const intervals=[0,1,3,7,14];
+ const next=strong?(advance?now+intervals[stage]*DAY:old.due):now+10*60000;
+ state.records[q.id]={attempts:old.attempts+1,correct:old.correct+(ok?1:0),stage,due:next,last:now,lastOK:ok};
+ const today=dateKey();if(!state.days.includes(today))state.days.push(today);
+}
+function stats(){
+ const rs=Object.values(state.records),attempts=rs.reduce((n,r)=>n+r.attempts,0),correct=rs.reduce((n,r)=>n+r.correct,0);
+ return {seen:rs.length,stable:rs.filter(r=>r.stage>=2).length,attempts,rate:attempts?Math.round(correct/attempts*100):0,due:visibleBank().filter(due).length};
+}
+function renderSidebar(){
+ const s=stats();
+ sidebar.innerHTML=`<section class="card"><div class="eyebrow">YOUR JOURNEY</div><h3 style="margin-top:12px">建築師的航海日誌</h3><div class="stats"><div class="stat"><strong>${s.seen}<small> / ${allBank.length}</small></strong><small>已作答情境（含入門）</small></div><div class="stat"><strong>${s.stable}</strong><small>跨日鞏固的概念</small></div><div class="stat"><strong>${s.rate}<small>%</small></strong><small>累計練習正確率</small></div><div class="stat"><strong>${s.due}</strong><small>已到期複習</small></div></div><p class="muted" style="font-size:.8rem;margin-top:16px">鞏固＝無提示、有把握答對，並在至少 20 小時後再次答對。不是通過機率。</p><div class="sidebar-extra">${domains.map(d=>{const total=allBank.filter(q=>q.d===d.id).length,seen=allBank.filter(q=>q.d===d.id&&state.records[q.id]).length;return `<div class="domain-stat"><p><span>${d.label}</span><span>${seen} / ${total}</span></p><progress value="${seen}" max="${total}" aria-label="${d.label}已作答 ${seen} 題"></progress></div>`}).join("")}</div></section><section class="card sidebar-extra"><div class="eyebrow">THE ARCHITECT'S RULE</div><h3 style="margin-top:12px">先找限制，再選服務。</h3><p class="muted" style="font-size:.9rem">① 硬性要求是什麼？<br>② 哪個選項先被淘汰？<br>③ 剩下的取捨是成本、維運、延遲，還是復原？</p><small>已練習 ${state.days.length} 個不同日期<br>${storageOK?"進度儲存於此瀏覽器":"⚠ 目前無法永久儲存"}</small></section>`;
+}
+function renderNav(){
+ nav.innerHTML=[["retake","↗ 重考作戰室"],["home","◈ 入門群島"],["review","↻ 複習碼頭"],["library","▤ 概念圖鑑"],["exam","◷ 入門挑戰"],["about","? 學習指南"]].map(([id,label])=>`<button data-tab="${id}" ${tab===id?'aria-current="page"':""}>${label}</button>`).join("");
+}
+function go(id){if(session)return;tab=id;render()}
+function render(){renderNav();renderSidebar();({retake:retakeDashboard,home:home,review:review,library:library,exam:examIntro,about:about}[tab]||home)()}
+function home(){
+ main.innerHTML=`<section class="card hero"><div class="eyebrow">A SMALL ADVENTURE. A REAL UNDERSTANDING.</div><h1>雲端不是用背的。<br><span style="color:var(--mint)">把一座城，建好。</span></h1><p class="muted" style="margin-top:22px">你收到一封來自雲嶼群島的求救信。風暴、流量與帳單同時逼近——每一次選擇，都在練習真正的架構判斷。</p><div class="actions"><button class="primary" data-start="daily">開始今日航程 · 6 題</button><button data-tab="about">先了解怎麼玩</button></div><p style="font-size:.8rem;margin-top:16px;color:var(--muted)">建議每天 15–20 分鐘 · 先回想 → 決策 → 解析 → 隔天再練</p><div class="big-mark" aria-hidden="true">◈</div></section><h2>選一座島，開始建設</h2><p class="muted">四大考試領域；每章 12 個原創情境。章節不鎖定，可先攻弱項。</p><div class="grid">${domains.map(d=>`<section class="card chapter"><div class="q-top"><span class="number" style="color:${d.color}">0${d.id+1}</span><span class="tag">官方領域占比 ${d.weight}%</span></div><h3>${d.name} <small> / ${d.label}</small></h3><p class="muted" style="font-size:.9rem">${d.story}</p><small>${d.topics}</small><button data-chapter="${d.id}">前往${d.name} →</button></section>`).join("")}</div><div class="notice">這是重點觀念入門版，不是將 2,970 頁 PDF 逐題遊戲化。完整準備仍需官方考綱、實作與更多未見過的練習題。</div>`;
+}
+function review(){
+ const items=visibleBank().filter(q=>due(q)||weak(q));
+ main.innerHTML=`<section class="card"><div class="eyebrow">RETRIEVE, DON'T JUST REREAD</div><h2 style="margin-top:12px">複習碼頭</h2><p class="muted">先挑戰錯題與到期概念。答對但沒把握或用過提示，仍會在 10 分鐘後安排一次複習。</p><div class="actions"><button class="primary" data-start="review" ${items.length?"":"disabled"}>複習 ${items.length} 個情境</button></div></section>${items.length?items.map(q=>{const r=state.records[q.id];return `<section class="card"><span class="tag">${domains[q.d].label}</span><span class="pill">${!r.lastOK?"上次答錯": "已到期"}</span><h3>${esc(q.t)}</h3><p class="muted">${esc(q.tags)} · 練習 ${r.attempts} 次</p><button class="small" data-one="${q.id}">單獨練習</button></section>`}).join(""):`<section class="card empty"><h3>碼頭暫時風平浪靜。</h3><p class="muted">還沒做題，或所有複習都尚未到期。先探索新島嶼；不要只重看答案。</p><button data-start="daily">探索 6 個情境</button></section>`}<section class="card"><h3>複習排程怎麼算？</h3><p class="muted">無提示且有把握答對：依跨日成功次數排在 1、3、7、14 天後。立即重做不會加速升級。錯誤、猜對或用提示：回到 10 分鐘後；錯題也可以現在重做。</p><small>這是透明的簡化排程，不是經過個人化驗證的最適演算法。重新開啟頁面或切換分頁會重新計算到期數。</small></section>`;
+}
+function library(){
+ main.innerHTML=`<section class="card"><div class="eyebrow">FIELD GUIDE</div><h2 style="margin-top:12px">概念圖鑑</h2><p class="muted">先試著用自己的話回答，再展開觀念。搜尋服務英文名稱也可以。</p><label for="search" class="sr-only">搜尋概念或 AWS 服務</label><input id="search" class="search" type="search" placeholder="例如：SQS、Multi-AZ、KMS、成本…" autocomplete="off"><div id="concepts"></div></section>`;
+ filterLibrary("");
+}
+function filterLibrary(text){
+ const qs=visibleBank().filter(q=>`${q.t} ${q.tags} ${q.note} ${domains[q.d].label}`.toLowerCase().includes(text.toLowerCase()));
+ document.getElementById("concepts").innerHTML=qs.length?qs.map(q=>`<details><summary>${esc(q.t)} <small> / ${esc(q.tags)}</small></summary><p style="margin-top:12px">${esc(q.note)}</p><p class="muted">${esc(q.o[q.a[0]][1])}</p><div class="actions"><button class="small" data-one="${q.id}">用情境測試自己</button><a href="${q.ref}" target="_blank" rel="noopener noreferrer">AWS 官方文件 ↗</a></div></details>`).join(""):'<p class="muted">沒有符合的概念。試試服務名稱，例如 S3 或 IAM。</p>';
+}
+function examIntro(){
+ main.innerHTML=`<section class="card hero"><div class="eyebrow">THE STORM TRIAL</div><h2 style="margin-top:14px">風暴試煉 · 限時混合挑戰</h2><p class="muted">四座島同時發出求救信。這次沒有即時提示；你要獨立做完決策，結束後才一起看解析。</p><div class="flow"><span>20 題</span><span>40 分鐘</span><span>單選＋複選</span><span>交卷後解析</span></div><ul class="spaced muted"><li>安全 6、韌性 5、效能 5、成本 4 題，近似官方領域比重。</li><li>來自同一組 48 題，重做會熟悉題目；不代表對陌生題的能力。</li><li>可用上一題／下一題檢查，未作答計錯，複選需完全相符。</li><li>時間到自動交卷；關閉或重新整理頁面會中斷未交卷挑戰。</li></ul><button class="primary" data-start="exam">接受風暴試煉</button></section><div class="notice">這不是正式 65 題模擬考。正式考試為 65 題（50 題計分、15 題不計分）、130 分鐘；通過門檻是 720／1000 的量尺分數，不等於答對 72%。遊戲不估算正式分數或保證通過。</div>`;
+}
+function about(){
+ main.innerHTML=`<section class="card"><h2>重考版新增內容</h2><p>保留原本 48 題入門群島，新增 56 題英文情境：診斷 12 題、服務對決 12 題、複選配對 8 題、保留驗收 A／B 各 12 題。解析保留繁體中文與 AWS 英文術語。</p><p class="muted">診斷與驗收題不會在首次測驗前出現在圖鑑或日常訓練。首次顯示題目就記錄曝光，離開也不會恢復成未見題。交卷後才能查解析與加入複習。這是操作上的防洩題，不是加密：題目仍在 HTML 原始碼內；在其他地方見過相同概念不會被偵測。重設或遺失進度也會重設曝光紀錄，不能再視為真正未見題。</p><p class="muted">兩回驗收是不同題目，但與教學共享概念；每回僅 12 題，不能代替完整 65 題／130 分鐘的陌生題測試。80–85% 只是內部練習目標，未經校準，不換算 720 或通過率。建議另以官方練習與實作驗證。</p></section><section class="card"><div class="eyebrow">HOW TO LEARN</div><h2 style="margin-top:12px">不是刷得多，而是想得對。</h2><ol class="spaced"><li><strong>先提取：</strong>讀情境後，先在腦中或回想欄寫下限制與候選服務，再看選項。<a href="https://www.learningscientists.org/blog/2016/6/23-1" target="_blank" rel="noopener noreferrer">提取練習的說明 ↗</a></li><li><strong>再判斷：</strong>選答案並標記信心。猜對不當成已鞏固，答錯也不扣生命或阻止學習。</li><li><strong>看反例：</strong>每個選項都有解析。用一句話說明「它為什麼不符合本題」，比只記字母有效。</li><li><strong>間隔再來：</strong>每天少量練習、隔天回想，而非一次讀完。<a href="https://www.learningscientists.org/blog/2016/7/21-1" target="_blank" rel="noopener noreferrer">間隔練習的說明 ↗</a></li><li><strong>混合辨識：</strong>今日航程混合領域，練習分辨容易混淆的服務；故事只提供理解情境，不取代定義。<a href="https://www.learningscientists.org/blog/2016/8/18-1" target="_blank" rel="noopener noreferrer">六種學習策略與研究引文 ↗</a></li></ol><p class="muted">沒有一種方法對所有人、所有內容都「最有效」。本遊戲採用有研究支持的提取與間隔原則；遊戲化的功能是幫助你願意持續練，不是學習成效的保證。</p></section>
+ <section class="card"><h3>每天 20 分鐘航線</h3><p>① 5 分鐘：不看筆記，複習到期題。<br>② 10 分鐘：做今日 6 題，讀錯誤選項的解析。<br>③ 5 分鐘：講清楚一個架構取捨；每週用 AWS 官方教學實作一個重點。</p><p class="muted">進階準備：對照官方 task statements 補齊未涵蓋服務；做未見題、英文情境和實作。這份短題庫不足以單獨覆蓋完整 SAA。</p><div class="flow"><span>需求</span><b>→</b><span>限制</span><b>→</b><span>淘汰不符方案</span><b>→</b><span>比較取捨</span></div></section>
+ <section class="card"><h3>內容範圍與來源透明度</h3><p class="muted">使用者提供的 PDF 共 2,970 頁，本版系統性抽樣 59 頁確認服務主題，未逐題校對、未重製題目、答案或討論。48 個題目與群島故事為重新設計的原創教學，不提供原題對照；PDF 的答案與票選並非權威。</p><p class="muted">四領域依官方 SAA-C03 考綱：安全 30%、韌性 26%、效能 24%、成本 20%。每題附相關 AWS 文件。DMS 等跨域題在此依教學情境分類，不是官方逐題領域標記。</p><p><a href="${GUIDE}" target="_blank" rel="noopener noreferrer">AWS 官方 SAA-C03 考綱與評分說明 ↗</a><br><a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" rel="noopener noreferrer">AWS 官方證照頁面與考試資訊 ↗</a></p><small>文件查閱：2026-10-28。服務能力、價格與考綱會更新，請以官方最新文件為準。外部連結需要連網；遊戲本身不需要。</small></section>
+ <section class="card"><h3>保管你的航海日誌</h3><p class="muted">此 HTML 不上傳資料，也不連線取得題目。瀏覽器可能限制本機檔案的儲存；請定期匯出 JSON 備份。未交卷的答案草稿與文字理由不保存；曝光紀錄在顯示題目時就保存，練習紀錄在確認答案／交卷後保存。診斷與驗收的作答、信心及成績可在作戰室歷史查看。原版 v1 備份仍可匯入；匯入舊備份會取代目前的新紀錄，請先匯出最新備份。</p><div class="actions"><button id="export">匯出進度</button><label for="import" style="cursor:pointer;color:var(--blue)">匯入備份<input id="import" type="file" accept=".json,application/json" style="display:block;max-width:100%;font-size:.8rem"></label><button id="reset" class="ghost">重設進度</button></div></section>`;
+}
+function mistakeControl(q){
+ return `<label style="display:block;margin-top:16px" for="reason-${q.id}">這題卡在哪裡？（自我分類，不由系統猜測）</label><select class="search" style="margin-top:8px" id="reason-${q.id}" data-reason="${q.id}"><option value="">尚未分類</option>${Object.entries(reasons).map(([v,t])=>`<option value="${v}" ${state.mistakes[q.id]===v?"selected":""}>${t}</option>`).join("")}</select>`;
+}
+function retakeDashboard(){
+ const latest=state.runs.filter(r=>r.mode==="diagnostic").at(-1);
+ const observed=domains.map(d=>{
+ const items=latest?latest.items.filter(i=>byId.get(i.id).d===d.id):[];
+ const correct=items.filter(i=>same(i.selected,byId.get(i.id).a)).length;
+ return {d,items,correct,priority:items.length?(1-correct/items.length)*d.weight:0};
+ });
+ const target=[...observed].sort((a,b)=>b.priority-a.priority)[0];
+ const classified=Object.entries(reasons).map(([key,label])=>({key,label,n:Object.values(state.mistakes).filter(r=>r===key).length}));
+ const reviewCount=visibleBank().filter(q=>q.pool&&(due(q)||weak(q))).length;
+ main.innerHTML=`<section class="card hero"><div class="eyebrow">RETAKE MISSION / ENGLISH SCENARIOS</div><h1 style="font-size:clamp(1.9rem,4vw,3rem)">把「兩個都像對的」<br><span style="color:var(--mint)">變成有理由的選擇。</span></h1><p style="margin-top:20px">676 → 目標 720｜4–6 週｜每天 45 分鐘</p><p class="muted">四領域皆需改善不代表一樣弱。先用英文題觀察需求判讀、服務選型與複選組合；再用中文解析修正理由，不把重做高分當成正式分數。</p><div class="actions"><button class="primary" data-start="diagnostic">${latest?"重做英文診斷（熟題）":"開始英文診斷 · 12 題 / 24 分鐘"}</button><button data-start="retakeDaily">今日英文訓練 · 6 題</button></div><small style="display:block;margin-top:14px">新增 56 題原創英文題。診斷與驗收不是完整模擬考，沒有保證通過。</small></section>
+ <section class="card"><h2>你的作戰情報</h2>${latest?`<p>最近診斷：${runCorrect(latest)} / ${latest.items.length} · ${latest.fresh?"本機紀錄為首次曝光題組":"曾曝光題組，僅供複習觀察"}。</p><p class="muted">優先補強建議：<strong>${target.d.label}</strong>。以本次各領域錯誤比例 × 官方比重排序；樣本很小，只是訓練排序，不是能力定論。若全對，請改看信心不足與錯因，不必刻意重刷同一科。</p>`:'<p class="muted">尚未完成診斷。成績單無法提供各領域精確分數；先不要猜哪科最弱。</p>'}${observed.map(({d,items,correct})=>`<div class="domain-stat"><p><span>${d.label} · ${d.weight}%</span><span>${items.length?`${correct} / ${items.length}`:"待診斷"}</span></p><progress value="${correct}" max="${items.length||1}" aria-label="${d.label}診斷答對 ${correct} 題"></progress><button class="small" data-focus="${d.id}">練這個領域的英文情境</button></div>`).join("")}<h3>已自行分類的錯因（每題保留最近一次分類）</h3><div>${classified.map(r=>`<span class="tag">${r.label} · ${r.n}</span>`).join("")}</div><p class="muted">英文錯題／到期題：${reviewCount}。有把握卻答錯請優先處理。</p><button data-tab="review">前往複習碼頭</button></section>
+ <div class="grid"><section class="card"><div class="eyebrow">SERVICE DUELS</div><h2 style="margin-top:12px">條件改一項，答案就變。</h2><p class="muted">6 組雙幕對決，共 12 題。每題先寫硬限制與排除理由，再看中文解析。文字理由由你自行核對，不宣稱 AI 自動評分。</p>${[["db","Multi-AZ ↔ Read replica"],["events","SQS ↔ Kinesis"],["edge","CloudFront ↔ Global Accelerator"],["files","EFS ↔ FSx Windows"],["endpoint","Gateway ↔ Interface endpoint"],["purchase","Savings Plans ↔ Spot"]].map(([id,t])=>`<button style="display:block;width:100%;margin:8px 0" data-duel="${id}">${t}</button>`).join("")}</section>
+ <section class="card"><div class="eyebrow">COMPLETE THE SOLUTION</div><h2 style="margin-top:12px">複選需求配對</h2><p class="muted">8 題雙需求組合。為每個選中的元件指定它負責的需求。答案完整度與需求配對分開回饋，不給部分答對分。</p><button class="primary" data-start="multi">開始複選訓練 · 8 題</button><h3 style="margin-top:26px">每天 45 分鐘</h3><p class="muted">10 分鐘：到期題不看筆記回想。<br>25 分鐘：英文服務對決或複選。<br>10 分鐘：分類錯因，說出最接近錯項輸在哪裡。</p></section></div>
+ <section class="card"><h2>保留驗收碼頭</h2><p class="muted">建議第 4 週後再開：A、B 各 12 題／24 分鐘（安全 4、韌性 3、效能 3、成本 2）。不是正式 65 題模擬。未曝光的驗收題不進圖鑑、每日訓練或複習；看過或離開過都會失去未見題資格。</p><div class="grid">${["holdA","holdB"].map(mode=>{const qs=retakeBank.filter(q=>q.pool===mode),seen=qs.filter(q=>Object.hasOwn(state.seen,q.id)).length;return `<div><h3>${modeNames[mode]}</h3><p class="muted">${seen?`${seen} / 12 題曾顯示，整組不再視為全新`:"本機尚無曝光紀錄，請留到補強後"}</p><button data-start="${mode}">${seen?"重做（不列為未見驗收）":"開啟保留驗收"}</button></div>`}).join("")}</div><p class="notice" style="margin-top:20px">內部目標可參考 80–85%，但小樣本、題目難度與概念重複都會影響結果。即使兩回都達標，也不代表可換算 720；仍需完整陌生題限時練習與實作。</p></section>
+ <section class="card"><h2>測驗歷史</h2>${state.runs.length?[...state.runs].reverse().map(r=>`<details><summary>${modeNames[r.mode]} · ${new Date(r.at).toLocaleDateString("zh-TW")} · ${runCorrect(r)} / ${r.items.length} <small> / ${r.fresh?"首次曝光題組":"重做／已曝光"} · ${Math.ceil(r.elapsed/60000)} 分鐘</small></summary><p class="muted">信心高卻答錯 ${r.items.filter(i=>i.confidence==="sure"&&!same(i.selected,byId.get(i.id).a)).length} 題。錯題可到複習碼頭練習。</p>${r.items.map(i=>{const q=byId.get(i.id);return `<details class="result-item"><summary>${same(i.selected,q.a)?"✓":"↻"} ${esc(q.t)}</summary><p class="question" lang="en" style="margin-top:12px">${esc(q.q)}</p>${explanation(q,i.selected)}${mistakeControl(q)}</details>`}).join("")}</details>`).join(""):'<p class="muted">交卷後會保存診斷與 A／B 驗收成績、選項與信心；未交卷不產生成績，但曝光紀錄保留。</p>'}</section>
+ <section class="card"><h3>4–6 週路線</h3><p class="muted">第 1 週：診斷與服務選型。<br>第 2–3 週：雙幕對決、複選組合、官方文件與小型實作。<br>第 4 週：英文混合訓練，選不同日期做 A／B 保留驗收。<br>第 5–6 週：依錯因回補，另做完整 65 題／130 分鐘陌生題測試。</p><p class="muted">不用等到遊戲全破才實作，也不要反覆刷完固定題就提前報名。重考安排應根據多種證據，不是這裡的一個數字。</p><a href="${GUIDE}" target="_blank" rel="noopener noreferrer">對照官方考綱補齊未涵蓋主題 ↗</a></section>`;
+}
+function prioritize(qs){
+ return shuffle(qs).sort((a,b)=>{
+ const rank=q=>due(q)?0:weak(q)?1:!state.records[q.id]?2:3;
+ const diff=rank(a)-rank(b);return diff||((state.records[a.id]?.last||0)-(state.records[b.id]?.last||0));
+ });
+}
+function start(mode,argument){
+ if(session)return;
+ let qs;
+ if(Object.hasOwn(modeNames,mode)){
+ qs=retakeBank.filter(q=>q.pool===mode&&(mode!=="duel"||!argument||q.pair===argument));
+ if(mode!=="duel")qs=mode==="multi"?prioritize(qs):shuffle(qs);
+ if(["holdA","holdB"].includes(mode)&&!confirm("這是保留驗收。開啟題目會記錄曝光，離開也不會恢復成未見題。建議補強後再做。確定開始？"))return;
+ if(mode==="diagnostic"&&qs.some(q=>Object.hasOwn(state.seen,q.id))&&!confirm("你已看過部分診斷題，重做不再算全新診斷。要繼續嗎？"))return;
+ }else if(mode==="focus")qs=prioritize(retakeBank.filter(q=>!protectedPool(q)&&q.d===Number(argument))).slice(0,6);
+ else if(mode==="retakeDaily")qs=prioritize(visibleBank().filter(q=>q.pool&&!protectedPool(q))).slice(0,6);
+ else if(mode==="exam")qs=shuffle([6,5,5,4].flatMap((n,d)=>shuffle(bank.filter(q=>q.d===d)).slice(0,n)));
+ else if(mode==="chapter")qs=prioritize(bank.filter(q=>q.d===Number(argument)));
+ else if(mode==="review")qs=prioritize(visibleBank().filter(q=>due(q)||weak(q)));
+ else if(mode==="one")qs=visibleBank().filter(q=>q.id===argument);
+ else qs=prioritize(bank).slice(0,6);
+ if(!qs.length){notify("目前沒有待複習的題目。可先探索新的章節。");return}
+ session={mode,qs,index:0,answers:{},confidence:{},hints:{},orders:{},notes:{},limits:{},maps:{},revealed:{},results:{},fresh:qs.every(q=>!Object.hasOwn(state.seen,q.id)),started:Date.now(),deadline:Date.now()+(mode==="exam"?40:24)*60000};
+ for(const q of qs)session.orders[q.id]=shuffle(q.o.map((_,i)=>i));
+ if(isTimed(mode))timer=setInterval(tick,1000);
+ showQuestion();
+}
+function capture(){
+ if(!session)return;const q=session.qs[session.index];
+ if(session.renderedId!==q.id)return;
+ session.answers[q.id]=[...main.querySelectorAll('input[name="answer"]:checked')].map(e=>Number(e.value));
+ const conf=main.querySelector('input[name="confidence"]:checked');
+ if(conf)session.confidence[q.id]=conf.value;
+ const recall=document.getElementById("recall");if(recall)session.notes[q.id]=recall.value;
+ const limit=document.getElementById("limit");if(limit)session.limits[q.id]=limit.value;
+ if(q.requirements){session.maps[q.id]={};for(const el of main.querySelectorAll("[data-map]"))if(el.value!=="")session.maps[q.id][el.dataset.map]=Number(el.value)}
+}
+function explanation(q,chosen){
+ return `<p><strong>正確選項：</strong>${q.a.map(i=>esc(q.o[i][0])).join(" ＋ ")}</p><p>${esc(q.note)}</p>${q.requirements?`<h3>完整需求配對</h3>${q.a.map(i=>`<div class="explanation"><strong lang="en">${esc(q.o[i][0])}</strong><span lang="en">→ ${esc(q.requirements[q.matches[i]])}</span></div>`).join("")}`:`<div class="flow">${domains[q.d].flow.map((s,i)=>`${i?"<b>→</b>":""}<span>${esc(s)}</span>`).join("")}</div>`}${q.o.map((o,i)=>`<div class="explanation ${q.a.includes(i)?"correct":chosen.includes(i)?"incorrect":""}"><strong>${q.a.includes(i)?"✓ 正確":"○ 不符合本題"}${chosen.includes(i)?" · 你的選擇":""}：${esc(o[0])}</strong>${esc(o[1])}</div>`).join("")}<a href="${q.ref}" target="_blank" rel="noopener noreferrer">查閱 AWS 官方文件 ↗</a>`;
+}
+function mappingPanel(q,chosen,revealed){
+ if(!q.requirements||isTimed(session.mode))return "";
+ return `<fieldset ${revealed?"disabled":""}><legend>把選中的元件，配到它負責的需求（每個選項各選一項）</legend><ol lang="en">${q.requirements.map(r=>`<li>${esc(r)}</li>`).join("")}</ol>${session.orders[q.id].map(i=>`<div data-map-row="${i}" ${chosen.includes(i)?"":"hidden"}><label for="map-${i}" lang="en">${esc(q.o[i][0])}</label><select class="search" style="margin-top:8px" id="map-${i}" data-map="${i}"><option value="">選擇對應需求</option>${q.requirements.map((r,n)=>`<option value="${n}" ${session.maps[q.id]?.[i]===n?"selected":""}>${n+1}. ${esc(r)}</option>`).join("")}</select></div>`).join("")}<small>配對判斷另外顯示；完整選項組合仍採全對才得分。</small></fieldset>`;
+}
+function showQuestion(){
+ if(!session)return;
+ if(isTimed(session.mode)&&Date.now()>=session.deadline){finish(true);return}
+ const q=session.qs[session.index],d=domains[q.d],exam=isTimed(session.mode),revealed=!!session.revealed[q.id],chosen=session.answers[q.id]||[],english=!!q.pool;
+ if(!Object.hasOwn(state.seen,q.id)){state.seen[q.id]=Date.now();save()}
+ const label=modeNames[session.mode]||(exam?"風暴試煉":session.mode==="daily"?"今日航程":session.mode==="review"?"複習航程":english?"英文決策訓練":d.name);
+ main.innerHTML=`<section class="card session"><div class="q-top"><span class="eyebrow">${label} / ${session.index+1} OF ${session.qs.length}</span>${exam?'<span class="timer" id="clock" role="timer" aria-label="剩餘時間"></span>':""}<button class="small ghost" id="leave">離開航程</button></div><progress value="${session.index+1}" max="${session.qs.length}" aria-label="目前題號"></progress><div style="margin-top:20px">${exam&&english?"":`<span class="tag">${d.label}</span>`}<span class="tag">${q.a.length>1?`複選 · 選 ${q.a.length} 項`:"單選 · 選 1 項"}</span></div><h2>${exam&&english?`Question ${session.index+1}`:esc(q.t)}</h2>${english?"":`<p class="story">${esc(d.story)}</p>`}<p class="question" id="question-text" ${english?'lang="en"':""}>${esc(q.q)}</p>
+ ${!exam&&english?`<label for="limit"><small>硬性限制是什麼？（服務對決必填，可用中文）</small></label><textarea id="limit" class="recall" placeholder="例如：要自動 failover，不是只增加讀取容量…" ${revealed?"disabled":""}>${esc(session.limits[q.id]||"")}</textarea>`:""}
+ ${!exam?`<label for="recall"><small>${english?"最接近的另一方案為什麼輸？（服務對決必填；文字不自動評分）":"先回想：關鍵限制、候選服務、排除理由（選填，不評分）"}</small></label><textarea id="recall" class="recall" placeholder="先用自己的話說一次，再選答案…" ${revealed?"disabled":""}>${esc(session.notes[q.id]||"")}</textarea>`:""}
+ <fieldset ${revealed?"disabled":""} aria-describedby="question-text"><legend class="sr-only">請選擇${q.a.length}個答案</legend>${session.orders[q.id].map((i,n)=>`<label class="option ${revealed?(q.a.includes(i)?"correct":chosen.includes(i)?"incorrect":""):""}"><input name="answer" type="${q.a.length>1?"checkbox":"radio"}" value="${i}" ${chosen.includes(i)?"checked":""}><span class="letter">${String.fromCharCode(65+n)}</span><span ${english?'lang="en"':""}>${esc(q.o[i][0])}</span></label>`).join("")}</fieldset>
+ ${mappingPanel(q,chosen,revealed)}
+ <fieldset ${revealed?"disabled":""}><legend>這個判斷，你有多確定？${exam?"（選填）":"（必選）"}</legend>${[["guess","在猜"],["unsure","有點不確定"],["sure","能解釋理由"]].map(([v,t])=>`<label class="conf"><input type="radio" name="confidence" value="${v}" ${session.confidence[q.id]===v?"checked":""}>${t}</label>`).join("")}</fieldset>
+ ${!exam&&!revealed?`<details id="hint" ${session.hints[q.id]?"open":""}><summary>需要航海提示？（使用後不算鞏固）</summary><p>${esc(q.note)}</p></details>`:""}
+ <div id="answer-error" role="alert"></div>
+ ${revealed?`<section class="feedback ${session.results[q.id].ok?"":"wrong"}" aria-live="polite"><h3>${session.results[q.id].ok?"✓ 選項組合正確":"↻ 這個取捨值得再想一次"}</h3>${q.requirements?`<p>需求配對：${session.results[q.id].mappingOK?"正確":"尚未完整對應，請對照下方解析"}。</p>`:""}<p class="muted">${session.results[q.id].ok&&session.results[q.id].mappingOK!==false&&session.confidence[q.id]==="sure"&&!session.hints[q.id]?"已按間隔複習規則記錄。":"已安排 10 分鐘後複習；猜對或配錯不等於記住。"}${!session.results[q.id].ok&&session.confidence[q.id]==="sure"?" 這是一個『有把握但答錯』的概念，請優先釐清。":""}</p>${explanation(q,chosen)}${english?mistakeControl(q):""}</section>`:""}
+ <div class="actions">${exam?`<button id="prev" ${session.index?"":"disabled"}>← 上一題</button>${session.index<session.qs.length-1?'<button class="primary" id="next">下一題 →</button>':""}<button id="submit-exam">交卷看解析</button>`:revealed?`<button class="primary" id="next">${session.index===session.qs.length-1?"完成航程":"下一個決策 →"}</button>`:'<button class="primary" id="check">確認決策</button>'}</div>
+ ${exam?`<p class="muted" style="font-size:.85rem;margin-top:14px">已作答 ${Object.values(session.answers).filter(a=>a.length).length} / ${session.qs.length} 題。複選需完整選對；可上一題修改。交卷前不顯示答案。</p>`:""}</section>`;
+ session.renderedId=q.id;
+ renderNav();renderSidebar();if(exam)tick();
+ const hint=document.getElementById("hint");if(hint)hint.addEventListener("toggle",()=>{if(hint.open&&session)session.hints[q.id]=true});
+ main.focus({preventScroll:true});
+}
+function check(){
+ capture();const q=session.qs[session.index],answer=session.answers[q.id];
+ const error=answer.length!==q.a.length?`本題請選 ${q.a.length} 個答案。`:!session.confidence[q.id]?"請先標記你的信心，猜測也沒關係。":q.pool==="duel"&&(!session.limits[q.id]?.trim()||!session.notes[q.id]?.trim())?"請先寫下硬性限制，以及另一個方案不符合的理由（可用中文，不自動評分）。":q.requirements&&answer.some(i=>session.maps[q.id]?.[i]===undefined)?"請為每個已選的選項指定對應需求。":"";
+ if(error){document.getElementById("answer-error").innerHTML=`<p class="notice">${error}</p>`;return}
+ const ok=same(answer,q.a),mappingOK=!q.requirements||(ok&&q.a.every(i=>session.maps[q.id][i]===q.matches[i]));
+ session.results[q.id]={ok,mappingOK};session.revealed[q.id]=true;
+ record(q,ok,session.confidence[q.id],!!session.hints[q.id]||!mappingOK);save();showQuestion();
+}
+function tick(){
+ if(!session||!isTimed(session.mode))return;
+ const left=Math.max(0,Math.ceil((session.deadline-Date.now())/1000)),clock=document.getElementById("clock");
+ if(clock)clock.textContent=`剩餘 ${String(Math.floor(left/60)).padStart(2,"0")}:${String(left%60).padStart(2,"0")}`;
+ if(!left)finish(true);
+}
+function finish(timed=false){
+ if(!session)return;capture();clearInterval(timer);timer=null;
+ const completed=session,exam=isTimed(completed.mode);
+ if(exam)for(const q of completed.qs){const ok=same(completed.answers[q.id]||[],q.a);completed.results[q.id]={ok};record(q,ok,completed.confidence[q.id]||"guess",false)}
+ if(["diagnostic","holdA","holdB"].includes(completed.mode)){
+ for(const q of completed.qs)if(!Object.hasOwn(state.seen,q.id))state.seen[q.id]=Date.now();
+ state.runs.push({mode:completed.mode,at:Date.now(),elapsed:Math.max(0,Math.min(Date.now(),completed.deadline)-completed.started),fresh:completed.fresh,items:completed.qs.map(q=>({id:q.id,selected:completed.answers[q.id]||[],confidence:completed.confidence[q.id]||"guess"}))});
+ }
+ save();session=null;
+ const qs=completed.qs.filter(q=>completed.results[q.id]),correct=qs.filter(q=>completed.results[q.id].ok).length;
+ const percent=qs.length?Math.round(correct/qs.length*100):0;
+ const shaky=qs.filter(q=>!completed.results[q.id].ok||completed.results[q.id].mappingOK===false||completed.confidence[q.id]!=="sure"||completed.hints[q.id]);
+ const missed=qs.reduce((n,q)=>n+q.a.filter(i=>!(completed.answers[q.id]||[]).includes(i)).length,0);
+ const extra=qs.reduce((n,q)=>n+(completed.answers[q.id]||[]).filter(i=>!q.a.includes(i)).length,0);
+ main.innerHTML=`<section class="card hero"><div class="eyebrow">${esc(modeNames[completed.mode]||"VOYAGE")} COMPLETE</div><h2 style="margin-top:16px">${timed?"時間到，已自動交卷。":"你又讓群島穩固了一點。"}</h2><div class="score">${correct}<span style="font-size:1.4rem;color:var(--muted)"> / ${qs.length}</span></div><p style="margin-top:16px">本次正確率 ${percent}% · ${shaky.length} 個概念值得再練</p>${protectedPool(qs[0])&&exam?`<p class="pill">${completed.fresh?"本機紀錄：首次曝光題組":"曾曝光或重做題組，不作未見驗收解讀"} · 成績已記錄到重考作戰室</p>`:""}<p class="muted">這是這組練習的表現，不是 AWS 量尺分數，也不是通過機率。熟悉題目不等於能解陌生題。</p><div class="actions"><button class="primary" data-tab="retake">回到重考作戰室</button><button data-tab="review">前往複習碼頭</button><button data-tab="home">回到入門群島</button></div></section>
+ <section class="card"><h3>先找出決策缺口</h3><p>漏選正確元件 ${missed} 個 · 誤選不符元件 ${extra} 個（包括未作答；這是選項層級計數，不是額外分數）。</p><p class="muted">有把握卻答錯：${qs.filter(q=>!completed.results[q.id].ok&&completed.confidence[q.id]==="sure").length} 題。複選整組完全相符才算答對；配對錯誤另作提醒，不改答案正確率，但不算鞏固。</p><p class="muted">下一步：展開錯題，先看硬性限制與最接近錯項，再自行分類錯因。系統不會僅憑答錯就推斷你英文不好或不懂服務。</p></section>
+ <section class="card"><h3>四座島的本次狀態</h3>${domains.map(d=>{const own=qs.filter(q=>q.d===d.id),n=own.filter(q=>completed.results[q.id].ok).length;return `<div class="domain-stat"><p><span>${d.label}（正式占比 ${d.weight}%）</span><span>${own.length?`${n} / ${own.length}`:"本次未練習"}</span></p><progress value="${n}" max="${own.length||1}" aria-label="${d.label}答對 ${n} 題"></progress></div>`}).join("")}<p class="muted">下一步：選一題有把握卻答錯的題，用自己的話講出正確方案和兩個排除理由。明天再不看答案重做。</p></section>
+ <section class="card"><h3>本次完整解析</h3>${qs.map(q=>`<details class="result-item"><summary>${completed.results[q.id].ok?"✓":"↻"} ${esc(q.t)} <small> / ${completed.confidence[q.id]==="sure"?"有把握":completed.confidence[q.id]==="unsure"?"不確定":"猜測或未標記"}${!(completed.answers[q.id]||[]).length?" · 未作答":""}${completed.results[q.id].mappingOK===false?" · 需求配對待加強":""}</small></summary><p class="question" ${q.pool?'lang="en"':""} style="margin-top:16px">${esc(q.q)}</p>${explanation(q,completed.answers[q.id]||[])}${q.pool?mistakeControl(q):""}</details>`).join("")}</section>`;
+ renderNav();renderSidebar();main.focus({preventScroll:true});window.scrollTo(0,0);
+}
+function leave(){
+ if(!confirm("要離開這次航程嗎？已確認的練習紀錄會保留；未交卷的限時挑戰不產生成績，但已顯示題目的曝光紀錄會保留。"))return;
+ clearInterval(timer);timer=null;session=null;render();
+}
+function exportProgress(){
+ const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=`saa-cloud-quest-${dateKey()}.json`;a.hidden=true;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ notify("已產生進度備份下載，請確認瀏覽器已儲存 JSON 檔。");
+}
+async function importProgress(file){
+ if(!file)return;
+ try{
+ if(file.size>2*1024*1024)throw new Error("檔案超過 2 MB 限制");
+ const parsed=JSON.parse(await file.text());if(!validState(parsed))throw new Error("不是有效的本遊戲進度備份（可接受原版 v1 與重考版）");
+ if(!confirm("匯入會取代目前進度，是否繼續？"))return;
+ state=normalizeState(parsed);storageOK=true;save();render();if(storageOK)notify("進度已匯入並儲存。");
+ }catch(e){notify(`匯入失敗：${e.message}。目前進度未變更。`,true)}
+}
+document.addEventListener("click",event=>{
+ const b=event.target.closest("button");if(!b||b.disabled)return;
+ if(b.dataset.tab){go(b.dataset.tab);return}
+ if(b.dataset.start){start(b.dataset.start);return}
+ if(b.dataset.duel){start("duel",b.dataset.duel);return}
+ if(b.dataset.focus!==undefined){start("focus",b.dataset.focus);return}
+ if(b.dataset.chapter!==undefined){start("chapter",b.dataset.chapter);return}
+ if(b.dataset.one){start("one",b.dataset.one);return}
+ if(b.id==="check"&&session&&!session.revealed[session.qs[session.index].id])check();
+ else if((b.id==="next"||b.id==="prev")&&session){
+ capture();
+ if(b.id==="prev")session.index=Math.max(0,session.index-1);
+ else if(session.index===session.qs.length-1){finish();return}
+ else session.index++;
+ showQuestion();window.scrollTo(0,0);
+ }else if(b.id==="submit-exam"&&session){
+ capture();const unanswered=session.qs.filter(q=>(session.answers[q.id]||[]).length!==q.a.length).length;
+ if(confirm(`確定交卷？${unanswered?`有 ${unanswered} 題未完整作答，未作答計錯。`:"所有題目皆已作答。"}`))finish();
+ }else if(b.id==="leave")leave();
+ else if(b.id==="export")exportProgress();
+ else if(b.id==="reset"&&confirm("確定清除全部練習、測驗與曝光紀錄？建議先匯出備份。重設後也不能把曾看過的題目當成真正未見題。")){
+ state=blank();storageOK=true;save();render();if(storageOK)notify("進度已重設。");
+ }
+});
+document.addEventListener("input",e=>{if(e.target.id==="search")filterLibrary(e.target.value)});
+document.addEventListener("change",e=>{
+ if(e.target.id==="import")importProgress(e.target.files[0]);
+ if(e.target.dataset.reason&&Object.hasOwn(reasons,e.target.value)){state.mistakes[e.target.dataset.reason]=e.target.value;save()}
+ else if(e.target.dataset.reason&&e.target.value===""){delete state.mistakes[e.target.dataset.reason];save()}
+ if(e.target.name==="answer"&&session){
+ const chosen=[...main.querySelectorAll('input[name="answer"]:checked')].map(el=>el.value);
+ for(const row of main.querySelectorAll("[data-map-row]"))row.hidden=!chosen.includes(row.dataset.mapRow);
+ }
+});
+document.addEventListener("visibilitychange",()=>{if(!document.hidden){if(session&&isTimed(session.mode))tick();else if(!session){renderSidebar();if(tab==="review")review()}}});
+window.addEventListener("beforeunload",e=>{if(session){e.preventDefault();e.returnValue=""}});
+try{
+ load();render();
+ document.getElementById("startup-help").hidden=true;
+}catch(error){
+ console.error("Cloud Quest startup failed",error);
+ const help=document.getElementById("startup-help");
+ help.hidden=false;
+ const detail=document.createElement("p");
+ detail.className="notice error";
+ detail.textContent=`遊戲啟動失敗：${error instanceof Error?error.message:String(error)}。請保留原本檔案與進度，不要先清除瀏覽資料；更新檔案或換用新版瀏覽器後重試。`;
+ help.appendChild(detail);
+}
+</script>
+</body>
+</html>
