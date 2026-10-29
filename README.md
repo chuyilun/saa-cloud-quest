@@ -18,6 +18,15 @@ Play at https://chuyilun.github.io/saa-cloud-quest/ using a modern browser, incl
 
 ## Priority practice
 
+The retake dashboard shows cumulative English practice separately from the latest
+standalone diagnostic. Each domain displays unique questions answered, cumulative
+correct attempts, latest-wrong questions, and spaced mastery. Coverage bars are
+not ability scores. Confirmed daily, duel, multiple-response, priority, domain-focus,
+and review attempts for non-assessment English questions count toward practice.
+Diagnostic/held-out questions and introductory Chinese questions are excluded from
+these practice totals. Existing records populate the dashboard without migration.
+Taking daily practice does not complete the separate 12-question diagnostic.
+
 Choose **重點考點練習** to practice four questions from one topic or a mixed set of six.
 Topics cover identity/encryption, networking, storage, databases, events, compute,
 hybrid migration, and operations/recovery/cost. Each option has a Traditional Chinese
