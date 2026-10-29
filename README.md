@@ -10,6 +10,21 @@ Play at https://chuyilun.github.io/saa-cloud-quest/ using a modern browser, incl
 - Per-option explanations and AWS documentation links.
 - Confidence checks, spaced review, and local progress backup/import.
 - Separate held-out assessment sets with local exposure tracking.
+- A searchable English story glossary: 150 cards across 12 connected Cloudhaven chapters.
+  Each card separates a simple story scene, an AWS definition, and a confusion warning,
+  with an optional Chinese terminology hint. Chapters include recall prompts and AWS references.
+
+## Story glossary
+
+Choose **英文故事詞典** in the navigation. Search English, acronyms, or Chinese,
+or filter to one chapter. The story follows building Cloudhaven, opening a festival,
+surviving a storm, and reviewing the bill. Analogy is not a service specification.
+The glossary broadly follows the official SAA-C03 service/concept scope but is not
+an exhaustive or permanent exam vocabulary list. Check current AWS documentation,
+particularly for legacy and specialist services.
+
+Reading the glossary does not modify progress, scores, or assessment exposure records.
+It does not reveal the held-out assessment questions.
 
 ## Progress and privacy
 
