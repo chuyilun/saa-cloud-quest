@@ -7,8 +7,8 @@ Play at https://chuyilun.github.io/saa-cloud-quest/ using a modern browser, incl
 ## Features
 
 - 48 introductory scenarios and 56 English diagnostic, service-comparison, multiple-response, and assessment scenarios.
-- 32 additional original English priority-practice scenarios (136 questions total),
-  organized into 8 topics with 8 two-requirement multiple-response exercises.
+- 56 original English priority-practice scenarios (160 questions total),
+  organized into 14 topics with 13 two-requirement multiple-response exercises.
 - Per-option explanations and AWS documentation links.
 - Confidence checks, spaced review, and local progress backup/import.
 - Separate held-out assessment sets with local exposure tracking.
@@ -28,22 +28,38 @@ these practice totals. Existing records populate the dashboard without migration
 Taking daily practice does not complete the separate 12-question diagnostic.
 
 Choose **重點考點練習** to practice four questions from one topic or a mixed set of six.
-Topics cover identity/encryption, networking, storage, databases, events, compute,
-hybrid migration, and operations/recovery/cost. Each option has a Traditional Chinese
+The **新一批混合** button selects only the 24 newly added full-PDF-informed scenarios.
+Six topic cards are marked **新增 · 全檔統計補題**: EC2 replacement/state/capacity,
+S3 transfers/archive/access, RDS availability/consistency/cost, load balancing/scaling,
+VPC egress/endpoints, and Lambda/cross-account governance.
+Other topics cover identity/encryption, events, hybrid migration, and operations.
+Each option has a Traditional Chinese
 explanation; multiple-response questions also require mapping components to requirements.
 These questions participate in English daily practice, domain focus, concept search,
 wrong-answer/due review, confidence tracking, and spaced repetition.
 Existing local progress and v1 backups remain valid. Backups containing the new question
 IDs must be imported into this updated version, not an older offline HTML copy.
 
-Selection combines the official SAA-C03 scope with a systematic concept-only sample
+The first 32 priority questions combine the official SAA-C03 scope with a systematic concept-only sample
 of 99 pages from the 2,970-page user-provided PDF (page 21, then every 30 pages).
 This is separate from the initial 59-page sample used for the introductory game.
 The sample counts service mentions by page, not questions or exam frequencies.
 No PDF questions, answers, or discussions are reproduced or published.
 All added questions are newly authored scenarios, not translations of PDF questions.
 Priority labels are study recommendations, not verified claims of exam frequency.
-The new bank is allocated 10/8/8/6 across the four domains; it is not a calibrated mock exam.
+The next 24 scenarios use aggregate service-mention statistics from the newer
+question-and-answer-only PDF: 1,027 pages, 1,019 detected questions, 5 cross-page joins,
+and 2 malformed-option exclusions, leaving a 1,017-question denominator.
+For example, EC2 appears in 326 stems, S3 in 200, and RDS in 115.
+These are mentions, not verified core-topic frequencies. Distractor mentions are not
+treated as proof of the tested concept. Near-duplicate semantic review is incomplete.
+The new scenarios address architecture trade-offs around commonly mentioned services,
+not adaptations or translations of individual source questions.
+Only aggregate methodology and counts accompany the public game; the source PDF,
+question text, answer keys, private analysis files and per-question index do not.
+The combined priority bank is allocated 16/15/15/10 across the four domains;
+it is not a calibrated mock exam. The new batch's five multiple-response questions
+require explicit two-requirement mapping and exact option-set grading.
 Existing diagnostic and held-out banks remain unchanged and separate.
 
 ## Story glossary
